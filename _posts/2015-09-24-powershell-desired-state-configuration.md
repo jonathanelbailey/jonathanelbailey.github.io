@@ -9,7 +9,7 @@ image:
   feature: 20151010_113344.jpg
 date: 2015-09-24T17:06:40-05:00
 ---
-{% include _toc.html %}
+{% include toc %}
 
 ## Introduction
 

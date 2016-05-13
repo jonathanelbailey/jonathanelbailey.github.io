@@ -10,7 +10,7 @@ image:
 date: 2015-10-07T13:47:33-05:00
 ---
 
-{% include _toc.html %}
+{% include toc %}
 
 ## Introduction
 
