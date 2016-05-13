@@ -1,8 +1,7 @@
 ---
-layout: post
 title: "Quick Package Installation With PowerShell and Chocolatey"
 modified:
-categories: 
+categories:
 excerpt: 'A small script that demonstrates the simplicity of package installation using Active Directory, Chocolatey, and PsRemoting'
 tags: ['PowerShell', 'Chocolatey', 'Active Directory']
 image:
@@ -20,7 +19,7 @@ PowerShell and Chocolatey, it's extremely easy.
 ## Chocolatey
 
 Chocolatey is a fantastic package manager that I have tested and installed throughout my production environment.
-its reliability and abstraction makes for a perfect tool that simplifies the deployment of packages. To install 
+its reliability and abstraction makes for a perfect tool that simplifies the deployment of packages. To install
 Chocolatey, run the following:
 
 {% highlight powershell %}

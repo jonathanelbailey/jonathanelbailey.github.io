@@ -1,8 +1,7 @@
 ---
-layout: post
 title: "Automating SQL Server Installation With PowerShell and Chocolatey"
 modified:
-categories: 
+categories:
 excerpt: 'A script that allows the installation and initial configuration of SQL Server 2012 Express'
 tags: ['SQL Server', 'PowerShell', 'Chocolatey']
 image:
@@ -15,7 +14,7 @@ date: 2015-10-05T22:00:10-05:00
 ## Introduction
 
 Installing SQL Server can be time consuming as well as complicated.  The best way to tackle these pain points
-are to automate the entire process.  In this post I will install and configure SQL Server using Chocolatey and 
+are to automate the entire process.  In this post I will install and configure SQL Server using Chocolatey and
 a custom configuration file.
 
 ## The Configuration File
@@ -122,11 +121,11 @@ Next, let's create the configuration file:
 {% highlight powershell %}
 set-content -Value $Source -Path 'configurationfile.ini'
 {% endhighlight %}
- 
+
  #### Checking for Chocolatey
- 
+
  The first thing I want to do is ensure that Chocolatey is in fact installed, and if not, install it:
- 
+
  {% highlight powershell%}
 	$chocopath = 'c:\programdata\chocolatey'
 	 if ((test-path $chocopath) -eq $false){
@@ -138,7 +137,7 @@ set-content -Value $Source -Path 'configurationfile.ini'
 #### Chocolatey Parameters
 
 The next step is to run Chocolatey.  There's a great feature about Chocolatey that allows you to override the default parameters
-that exist in the package install script.  Since we have a configuration file, all we have to do is tell the install package to 
+that exist in the package install script.  Since we have a configuration file, all we have to do is tell the install package to
 use the file:
 
 {% highlight powershell %}

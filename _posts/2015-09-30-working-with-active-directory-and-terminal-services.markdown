@@ -1,8 +1,7 @@
 ---
-layout: post
 title: "Working With Active Directory and Terminal Services"
 modified:
-categories: 
+categories:
 excerpt: 'A small script that allows an administrator to get a list of all users who have not logged in to a terminal server.'
 tags: ['Active Directory', 'PowerShell', 'RDS']
 image:
@@ -62,4 +61,3 @@ And if I'd like to have a list of users who actually HAVE logged in?  Simply fli
 Here's the gist:
 
 {% gist jonathanelbailey/b97c17e712284cae93e0 %}
-

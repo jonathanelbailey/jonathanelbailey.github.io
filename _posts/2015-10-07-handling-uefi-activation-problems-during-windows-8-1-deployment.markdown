@@ -1,8 +1,7 @@
 ---
-layout: post
 title: "Handling UEFI Activation Problems During Windows 8.1 Deployment"
 modified:
-categories: 
+categories:
 excerpt: 'A function that mitigates activation problems during Windows 8.1 Deployment.'
 tags: ['PowerShell','Deployment','UEFI']
 image:
@@ -18,7 +17,7 @@ When I transitioned my company's imaging process from Windows 7 Professional to 
 some growing pains that were difficult to overcome.  I started imaging our workstations with Windows 8.1 after
 testing, but the impetus was really necessity.  As soon as reserves of Windows 7 Certified Hardware disappeared,
 there were consistent activation problems that couldn't be resolved.  The issue that we ran into was with our
-process, which was admittedly a cost saving measure, of using the OEM keys that came with a machine instead of 
+process, which was admittedly a cost saving measure, of using the OEM keys that came with a machine instead of
 Volume Licensed keys.
 
 ## Licensing Legality

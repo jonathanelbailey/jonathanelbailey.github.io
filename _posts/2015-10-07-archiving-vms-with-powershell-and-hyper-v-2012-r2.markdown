@@ -1,8 +1,7 @@
 ---
-layout: post
 title: "Archiving VMs With PowerShell and Hyper-V 2012 R2"
 modified:
-categories: 
+categories:
 excerpt: 'A set of functions that allow you to create VM archives using live exports with PowerShell and Hyper-V'
 tags: ['Hyper-V','PowerShell']
 image:
@@ -121,7 +120,7 @@ Function Get-VMExports{
             RDP { $VMs = Get-VM | Where-Object name -Match 'RDP' }
             SQL { $VMs = get-vm | where-object name -Match 'SQL' }
             DC { $VMs = get-vm | Where-Object name -Match 'DC' }
-        } 
+        }
 		if ($removecheckpoint -eq $true){
 			remove-checkpointsforExport -vmscope $vmscope
 		}

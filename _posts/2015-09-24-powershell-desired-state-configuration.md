@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "PowerShell Desired State Configuration"
 modified:
 categories:
