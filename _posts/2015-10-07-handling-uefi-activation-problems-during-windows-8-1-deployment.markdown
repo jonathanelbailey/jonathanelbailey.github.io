@@ -51,9 +51,15 @@ Using PowerShell to harness the power of .NET, we can use that hex value to acti
 
 Our first task is to see what the output is for oa3tool:
 
+{% include base_path %}
+
+{% capture fig_img %}
+![output]({{ base_path }}/images/oa3tool.jpg)
+{% endcapture %}
+
 <figure>
-<a href="https://raw.githubusercontent.com/jonathanelbailey/jonathanelbailey.github.io/master/images/oa3tool.jpg"><img src="https://raw.githubusercontent.com/jonathanelbailey/jonathanelbailey.github.io/master/images/oa3tool.jpg"></a>
-<figcaption><a href="https://jonathanelbailey.github.io/" title="oa3tool's output">oa3tool's output</a>.</figcaption>
+  {{ fig_img | markdownify | remove: "<p>" | remove: "</p>" }}
+  <figcaption>oa3tool's output.</figcaption>
 </figure>
 
 It's straight text.  So the first thing we'll have to do is convert this into something meaningful.
