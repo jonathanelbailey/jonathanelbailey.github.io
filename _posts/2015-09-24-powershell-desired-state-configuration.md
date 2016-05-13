@@ -2,11 +2,15 @@
 layout: post
 title: "PowerShell Desired State Configuration"
 modified:
-categories: 
+categories:
 excerpt: 'An overview of a PowerShell Push Configuration'
-tags: ['PowerShell', 'DSC','DNS','DHCP']
-image:
-  feature: 20151010_113344.jpg
+tags:
+  - PowerShell
+  - DSC
+  - DNS
+  - DHCP
+header:
+  image: 20151010_113344.jpg
 date: 2015-09-24T17:06:40-05:00
 ---
 {% include toc %}
@@ -15,11 +19,11 @@ date: 2015-09-24T17:06:40-05:00
 
 PowerShell Desired State Configuration's been out since PowerShell 4.0, and when implemented properly, it's almost like cheating when it comes to provisioning and configuring servers.  The learning curve isn't very tough,
 and there's a vibrant open-source community that supports the creation of resources.  
-Furthermore, if there's not a resource available that you need, you can always create a resource yourself.  In this piece, I'll be walking through how to create a DSC Push configuration that will Provision and configure 
+Furthermore, if there's not a resource available that you need, you can always create a resource yourself.  In this piece, I'll be walking through how to create a DSC Push configuration that will Provision and configure
 a Server 2012 installation with the DNS and DHCP server roles.
 
 #### Environment Configuration
- 
+
 For the test environment, I used a Server 2012 R2 Core installation.  Before getting started, please run the following from a shell on the test server:
 
 {% raw %}
@@ -129,21 +133,21 @@ configuration Name
 Here we see that the configuration keyword acts much like a function.  Inside the function, you'll see the node keyword.  This references all the machines that this configuration in particular will apply to.
 Inside are a couple of resource providers.  These are the bread and butter of DSC.  Resource providers offer declarative domain specific language that simplifies the configuration process.  Resources abstract all the
 dirty work that can go into writing home made PowerShell scripts that could do the same thing. Let's go ahead and configure this using the xNetworking resource:
-  
+
  {% highlight powershell %}
 configuration TestNodeConfig
 {
 	Param( $ServerIp,
 		   $MachineName)
-    
+
 	import-dscresource -module xNetworking
-	
+
 	# One can evaluate expressions to get the node list
     # E.g: $AllNodes.Where("Role -eq Web").NodeName
     node ($MachineName)
     {
         # Call Resource Provider
-        xIPAddress ServerIP	
+        xIPAddress ServerIP
         {
             IPAddress = $ServerIP
             InterfaceAlias = 'TestInt'
@@ -151,7 +155,7 @@ configuration TestNodeConfig
             SubnetMask = 28
             AddressFamily = 'IPv4'
         }     
-        xDNSServerAddress ServerDNS 
+        xDNSServerAddress ServerDNS
         {
             Address = $ServerIP
             InterfaceAlias = 'Ethernet'
@@ -193,7 +197,7 @@ Next, let's add the resource providers for Windows Server Roles.  They are liste
 As you can see, creation of the Windows Feature resource providers are pretty straight forward.  But, there's a new property we should look at into further detail:  `DependsOn`.  To ensure that a DSC configuration
 works properly, there must be forward thought regarding how a resource provider may conflict when working with other resources.
 
-If you're already familiar with how DNS Servers work, you'll know immediately that the DNS server installation wizard doesn't like interfaces with DHCP addresses.  Therefore, it's prudent to create your static IP 
+If you're already familiar with how DNS Servers work, you'll know immediately that the DNS server installation wizard doesn't like interfaces with DHCP addresses.  Therefore, it's prudent to create your static IP
 information before you install that feature.  The same goes for the DHCP role as well.  The way it works is that you call the resource in braces, and then reference the given name like `[SomeResource]FriendlyName`.
 
 #### DHCP Server Scope
@@ -211,7 +215,7 @@ For our next configuration step, we'll set DHCP Scope and Options:
             Ensure = "Present"
             LeaseDuration = "7:00:00"
             DependsOn = "[WindowsFeature]DHCP"
-            
+
         }
         xDhcpServerOption ServerOpt
         {
@@ -239,7 +243,7 @@ MAC address, I just used a MAC address generator.  These servers only exist theo
             IPAddress = '192.168.0.3'
             ClientMACAddress = 'FF-CA-2D-36-B6-4A'
             Name = 'Web1'
-            AddressFamily = 'IPv4' 
+            AddressFamily = 'IPv4'
             Ensure = 'Present'
             DependsOn = '[xDhcpServerScope]ServerScope'  
         }
@@ -249,7 +253,7 @@ MAC address, I just used a MAC address generator.  These servers only exist theo
             IPAddress = '192.168.0.4'
             ClientMACAddress = '5A-62-17-7D-87-FA'
             Name = 'Web2'
-            AddressFamily = 'IPv4' 
+            AddressFamily = 'IPv4'
             Ensure = 'Present'
             DependsOn = '[xDhcpServerScope]ServerScope'  
         }
@@ -259,9 +263,9 @@ MAC address, I just used a MAC address generator.  These servers only exist theo
             IPAddress = '192.168.0.5'
             ClientMACAddress = 'AE-6B-C3-DE-39-1B'
             Name = 'Web3'
-            AddressFamily = 'IPv4' 
+            AddressFamily = 'IPv4'
             Ensure = 'Present'
-            DependsOn = '[xDhcpServerScope]ServerScope' 
+            DependsOn = '[xDhcpServerScope]ServerScope'
         }
         xDhcpServerReservation SQL1Res
         {
@@ -269,7 +273,7 @@ MAC address, I just used a MAC address generator.  These servers only exist theo
             IPAddress = '192.168.0.6'
             ClientMACAddress = '59-72-C2-C4-76-79'
             Name = 'SQL1'
-            AddressFamily = 'IPv4' 
+            AddressFamily = 'IPv4'
             Ensure = 'Present'
             DependsOn = '[xDhcpServerScope]ServerScope'  
         }
@@ -280,7 +284,7 @@ MAC address, I just used a MAC address generator.  These servers only exist theo
             ClientMACAddress = 'A2-A1-AC-4D-06-8F'
             Name = 'Cache1'
             AddressFamily = 'IPv4'
-            Ensure = 'Present' 
+            Ensure = 'Present'
             DependsOn = '[xDhcpServerScope]ServerScope'  
         }
 {% endhighlight %}
@@ -347,7 +351,7 @@ As you can see, we create a hashtable that returns the CNAME for the IPs provide
 
 #### SetScript
 
-Next, we need to be able to apply whatever settings we need to the script.  `SetScript` will allow us to use the 
+Next, we need to be able to apply whatever settings we need to the script.  `SetScript` will allow us to use the
 `Start-DscConfiguration` CMDlet to apply the settings to the server if the settings aren't what they should be:
 
 {% highlight powershell %}
