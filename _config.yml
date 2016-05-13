@@ -10,7 +10,7 @@ locale                   : "en-US"
 title                    : "Fork Branches, Git Money"
 title_separator          : "-"
 name                     : &name "Jonathan Bailey"
-description              : &description "Testing Changes to Yaml"
+description              : &description "A DevOps Blog"
 url                      : https://mmistakes.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "/minimal-mistakes" # the subpath of your site, e.g. "/blog"
 gh_repo                  : "https://github.com/mmistakes/minimal-mistakes/blob"
@@ -64,9 +64,9 @@ google_ad_slot           :
 # Site Author
 author:
   name             : *name
-  avatar           : "michael-rose.jpg"
-  bio              : "Just another boring, tattooed, time traveling, designer."
-  location         : "Buffalo, NY"
+  avatar           : "bio_photo.jpg"
+  bio              : "DevOps engineer, PowerShell enthusiast, guitar player."
+  location         : "Birmingham, AL"
   email            : *email
   uri              : "https://mademistakes.com"
   bitbucket        :
@@ -75,12 +75,12 @@ author:
   flickr           :
   facebook         : *facebook
   foursquare       :
-  github           : "mmistakes"
+  github           : "jonathanelbailey""
   google_plus      :
   keybase          :
   instagram        : "mmistakes"
   lastfm           :
-  linkedin         :
+  linkedin         : jebaile7964
   pinterest        :
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username
