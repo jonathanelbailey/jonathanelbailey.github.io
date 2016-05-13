@@ -1,5 +1,6 @@
 ---
 title: "PowerShell Desired State Configuration"
+modified:
 categories:
 excerpt: 'An overview of a PowerShell Push Configuration'
 tags:
@@ -8,9 +9,10 @@ tags:
   - DNS
   - DHCP
 header:
-  image: 20151010_113344.jpg
+  overlay_image: 20151010_113344.jpg
+  caption: "Photo credit: Jonathan Bailey"
+date: 2015-09-24T17:06:40-05:00
 ---
-
 {% include toc %}
 
 ## Introduction

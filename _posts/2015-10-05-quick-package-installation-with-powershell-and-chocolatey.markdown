@@ -3,9 +3,13 @@ title: "Quick Package Installation With PowerShell and Chocolatey"
 modified:
 categories:
 excerpt: 'A small script that demonstrates the simplicity of package installation using Active Directory, Chocolatey, and PsRemoting'
-tags: ['PowerShell', 'Chocolatey', 'Active Directory']
-image:
-  feature: 20151010_112438.jpg
+tags:
+  - powershell
+  - chocolatey
+  - active directory
+header:
+  overlay_image: 20151010_112438.jpg
+  caption: "Photo credit: Jonathan Bailey"
 date: 2015-10-05T20:16:08-05:00
 ---
 

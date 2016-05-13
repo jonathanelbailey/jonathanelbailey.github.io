@@ -3,9 +3,13 @@ title: "Working With Active Directory and Terminal Services"
 modified:
 categories:
 excerpt: 'A small script that allows an administrator to get a list of all users who have not logged in to a terminal server.'
-tags: ['Active Directory', 'PowerShell', 'RDS']
-image:
-  feature: 20151010_113639.jpg
+tags:
+  - active directory
+  - powershell
+  - rds
+header:
+  overlay_image: 20151010_113639.jpg
+  caption: "Photo credit: Jonathan Bailey"
 date: 2015-09-30T16:29:11-05:00
 ---
 {% include toc %}

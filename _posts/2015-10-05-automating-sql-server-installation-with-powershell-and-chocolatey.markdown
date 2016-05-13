@@ -3,9 +3,13 @@ title: "Automating SQL Server Installation With PowerShell and Chocolatey"
 modified:
 categories:
 excerpt: 'A script that allows the installation and initial configuration of SQL Server 2012 Express'
-tags: ['SQL Server', 'PowerShell', 'Chocolatey']
-image:
-  feature: 20151010_122533.jpg
+tags:
+  - sql server
+  - powershell
+  - chocolatey
+header:
+  overlay_image: 20151010_122533.jpg
+  caption: "Photo credit: Jonathan Bailey"
 date: 2015-10-05T22:00:10-05:00
 ---
 

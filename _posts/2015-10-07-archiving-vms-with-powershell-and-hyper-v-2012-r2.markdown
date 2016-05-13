@@ -3,9 +3,12 @@ title: "Archiving VMs With PowerShell and Hyper-V 2012 R2"
 modified:
 categories:
 excerpt: 'A set of functions that allow you to create VM archives using live exports with PowerShell and Hyper-V'
-tags: ['Hyper-V','PowerShell']
-image:
-  feature: 20151010_123519_HDR.jpg
+tags:
+  - hyper-v
+  - powershell
+header:
+  overlay_image: 20151010_123519_HDR.jpg
+  caption: "Photo credit: Jonathan Bailey"
 date: 2015-10-07T10:31:04-05:00
 ---
 

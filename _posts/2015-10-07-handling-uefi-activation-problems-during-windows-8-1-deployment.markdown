@@ -3,9 +3,13 @@ title: "Handling UEFI Activation Problems During Windows 8.1 Deployment"
 modified:
 categories:
 excerpt: 'A function that mitigates activation problems during Windows 8.1 Deployment.'
-tags: ['PowerShell','Deployment','UEFI']
-image:
-  feature: 20151010_114929.jpg
+tags:
+  - powershell
+  - deployment
+  - uefi
+header:
+  overlay_image: 20151010_114929.jpg
+  caption: "Photo credit: Jonathan Bailey"
 date: 2015-10-07T13:47:33-05:00
 ---
 
