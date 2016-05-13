@@ -7,10 +7,10 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Fork Branche$, Git Money!"
+title                    : "FORK BRANCHE$ GIT MONEY"
 title_separator          : "-"
 name                     : &name "Jonathan Bailey"
-description              : &description "A DevOps Blog"
+description              : &description "A DevOps blog so based it's rebased"
 url                      : "https://jonathanelbailey.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "/blog" # the subpath of your site, e.g. "/blog"
 gh_repo                  : "https://github.com/jonathanelbailey/jonathanelbailey.github.io"
