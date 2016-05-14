@@ -4,8 +4,7 @@ modified: 2014-07-31T13:23:02.362000-04:00
 excerpt: "Jonathan Bailey's online CV"
 header:
   overlay_image: 20151010_122437_HDR.jpg
-  credit: Jonathan Bailey
-  creditlink:
+  caption: "Photo credit: Jonathan Bailey"
 ---
 
 {% include toc %}
