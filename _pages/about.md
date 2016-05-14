@@ -1,74 +1,68 @@
 ---
 permalink: /about/
 title: "About"
-excerpt: "Minimal Mistakes is a flexible two-column Jekyll theme."
+excerpt: "Get to know me."
 layouts_gallery:
-  - url: mm-layout-splash.png
-    image_path: mm-layout-splash.png
-    alt: "splash layout example"
-  - url: mm-layout-single-meta.png
-    image_path: mm-layout-single-meta.png
-    alt: "single layout with comments and related posts"
-  - url: mm-layout-archive.png
-    image_path: mm-layout-archive.png
-    alt: "archive layout example"
+  - url: DSC_9197.jpg
+    image_path: DSC_9197.jpg
+    alt: "Just Married"
+  - url: honeymoon-couple.JPG
+    image_path: honeymoon-couple.JPG
+    alt: "On the bus in Costa Maya"
+  - url: honeymoon-couple2.JPG
+    image_path: honeymoon-couple2.JPG
+    alt: "At the zoo in Belize"
 modified: 2016-04-18T16:39:37-04:00
+layouts_gallery2:
+  - url: 542203_10151846634443987_1777149313_n.jpg
+    image_path: 542203_10151846634443987_1777149313_n.jpg
+    alt: "Greg Ginn of Black Flag"
+  - url: 778930_10151432742758987_1641262117_o.jpg
+    image_path: 778930_10151432742758987_1641262117_o.jpg
+    alt: "Scott Kelly of Neurosis"
+  - url: 841166_10151432716383987_1529849127_o.jpg
+    image_path: 841166_10151432716383987_1529849127_o.jpg
+    alt: "Mike IX of Eyehategod"
+  - url: 10624773_10153244053043943_5121749777911247828_n.jpg
+    image_path: 10624773_10153244053043943_5121749777911247828_n.jpg
+    alt: "Jim Horton of the Reverend Horton Heat"
 ---
 
 {% include base_path %}
 
-Minimal Mistakes is a flexible two-column Jekyll theme. Perfect for hosting your personal site, blog, or portfolio on GitHub or self-hosting on your own server. As the name implies --- styling is purposely minimalistic to be enhanced and customized by you :smile:.
+My name is Jonathan.  I am a DevOps engineer at Ebsco.  I just got married. :smile:.
 
-The theme includes responsive layouts (`single`, `archive`, and `splash` pages) that look great on mobile and desktop browsers.
+{% include gallery id="layouts_gallery" caption="Wedding and honeymoon photos" %}
 
-{% include gallery id="layouts_gallery" caption="Examples of included layouts `splash`, `single`, and `archive`." %}
+<!-- [Install the Theme]({{ base_path }}/docs/quick-start-guide/){: .btn .btn--success .btn--large} -->
 
-[Install the Theme]({{ base_path }}/docs/quick-start-guide/){: .btn .btn--success .btn--large}
+## What I do
 
-## Notable Features
+I moved to Birmingham in 2012 to work at Suburban Software Systems, a family owned software company that's been in business since the 80's.
+Since I've moved to Birmingham, I've been lucky enough to have a good career, an amazing wife, and a network of friends of all walks of life.
 
-- Compatible with Jekyll 3.x and GitHub Pages
-- Several layout options (single, archive, splash pages)
-- SEO optimized with support for [Twitter Cards](https://dev.twitter.com/cards/overview) and [Open Graph](http://ogp.me/) data
-- Optional header images, sidebars, table of contents, galleries, related posts, breadcrumb links, and more.
-- Optional comments ([Disqus](https://disqus.com/), [Facebook](https://developers.facebook.com/docs/plugins/comments), Google+, and custom)
-- Optional analytics ([Google Analytics](https://www.google.com/analytics/) and custom)
+![Suburban Software]({{ site.url }}{{ site.baseurl }}/images/20150411_185407.jpg 'At a trade show in Atlanta')
 
-## Demo Pages
+Throughout my posts you'll see pictures from in and around Birmingham as a tip of the hat to the place I love.  If you've not been to Birmingham,
+you really need to visit.
 
-| Name                                        | Description                                           |
-| ------------------------------------------- | ----------------------------------------------------- |
-| [Post with Header Image][header-image-post] | A post with a large header image. |
-| [HTML Tags and Formatting Post][html-tags-post] | A variety of common markup showing how the theme styles them. |
-| [Syntax Highlighting Post][syntax-post] | Post displaying highlighted code. |
-| [Post with a Gallery][gallery-post] | A post showing several images wrapped in `<figure>` elements. |
-| [Sample Collection Page][sample-collection] | Single page from a collection. |
-| [Categories Archive][categories-archive] | Posts grouped by category. |
-| [Tags Archive][tags-archive] | Posts grouped by tags. |
+## How I spend my time in the 'Ham
 
-For even more demo pages check the [posts archive][year-archive].
+Birmingham has a fantastic music scene.  If you ever get the chance, see a small venue show at The Nick, Zydeco, or Iron City.  You're going to have a fantastic time.
 
----
+{% include gallery id="layouts_gallery2" caption="Birmingham's a great place to meet people." %}
 
-## Credits
+## Other interests
 
-### Icons + Demo Images:
+I am politically engaged, but I try not to talk about my views too much.  Birmingham's a place with a checkered past, but things are looking up for the city.
 
-- [The Noun Project](https://thenounproject.com) -- Garrett Knoll, Arthur Shlain, and [tracy tam](https://thenounproject.com/tracytam)
-- [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
-- [Unsplash](https://unsplash.com/)
+![Bernie Sanders Rally]({{ site.url }}{{ site.baseurl }}/images/20160118_193104.jpg 'Bernie Sanders in Birmingham')
 
-### Other:
+I also play video games.  I like simulators.
 
-- [Jekyll](http://jekyllrb.com/)
-- [jQuery](http://jquery.com/)
-- [Susy](http://susy.oddbird.net/)
-- [Breakpoint](http://breakpoint-sass.com/)
-- [Magnific Popup](http://dimsemenov.com/plugins/magnific-popup/)
-- [FitVids.JS](http://fitvidsjs.com/)
-- Greedy Navigation - [lukejacksonn](http://codepen.io/lukejacksonn/pen/PwmwWV)
-- [jQuery Smooth Scroll](https://github.com/kswedberg/jquery-smooth-scroll)
-- [Stickyfill](https://github.com/wilddeer/stickyfill)
+![Elite:Dangerous]({{ site.url }}{{ site.baseurl }}/images/359320_screenshots_2015-09-07_00006.jpg 'My Ship')
+
+I hope you enjoy the content.
 
 ---
 
