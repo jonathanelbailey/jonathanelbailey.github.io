@@ -22,7 +22,7 @@ foo:
 # main links links
 main:
   - title: "Curriculum Vitae"
-    url: /docs/cv/
+    url: /portfolio/cv/
 
   - title: "About"
     url: /about/
