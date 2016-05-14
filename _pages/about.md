@@ -20,12 +20,12 @@ layouts_gallery2:
   - url: 778930_10151432742758987_1641262117_o.jpg
     image_path: 778930_10151432742758987_1641262117_o.jpg
     alt: "Scott Kelly of Neurosis"
-  - url: 841166_10151432716383987_1529849127_o.jpg
-    image_path: 841166_10151432716383987_1529849127_o.jpg
-    alt: "Mike IX of Eyehategod"
   - url: 10624773_10153244053043943_5121749777911247828_n.jpg
     image_path: 10624773_10153244053043943_5121749777911247828_n.jpg
     alt: "Jim Horton of the Reverend Horton Heat"
+  - url: 841166_10151432716383987_1529849127_o.jpg
+    image_path: 841166_10151432716383987_1529849127_o.jpg
+    alt: "Mike IX of Eyehategod"
 ---
 
 {% include base_path %}
