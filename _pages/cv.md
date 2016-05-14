@@ -1,4 +1,5 @@
 ---
+permalink: /cv/
 title: Curriculum Vitae
 modified: 2014-07-31T13:23:02.362000-04:00
 excerpt: "Jonathan Bailey's online CV"
