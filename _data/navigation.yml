@@ -21,8 +21,8 @@ foo:
 
 # main links links
 main:
-  - title: "Quick-Start Guide"
-    url: /docs/quick-start-guide/
+  - title: "Curriculum Vitae"
+    url: /docs/cv/
 
   - title: "About"
     url: /about/

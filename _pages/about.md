@@ -1,6 +1,6 @@
 ---
 permalink: /about/
-title: "About"
+title: "About Me"
 excerpt: "Get to know me."
 layouts_gallery:
   - url: DSC_9197.jpg
@@ -10,9 +10,9 @@ layouts_gallery:
     image_path: honeymoon-couple.JPG
     alt: "On the bus in Costa Maya"
   - url: honeymoon-couple2.JPG
-    image_path: honeymoon-couple2.JPG
+    image_path: honeymoon-couple-2.JPG
     alt: "At the zoo in Belize"
-modified: 2016-04-18T16:39:37-04:00
+modified: 2016-05-13T20:25:37-06:00
 layouts_gallery2:
   - url: 542203_10151846634443987_1777149313_n.jpg
     image_path: 542203_10151846634443987_1777149313_n.jpg
@@ -63,7 +63,3 @@ I also play video games.  I like simulators.
 ![Elite:Dangerous]({{ site.url }}{{ site.baseurl }}/images/359320_screenshots_2015-09-07_00006.jpg 'My Ship')
 
 I hope you enjoy the content.
-
----
-
-Minimal Mistakes is designed, developed, and maintained by Michael Rose. Just another boring, tattooed, designer from Buffalo New York.
