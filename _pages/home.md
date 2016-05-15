@@ -10,28 +10,30 @@ header:
   caption:
 excerpt: 'A flexible two-column Jekyll theme. Perfect for personal sites, blogs, and portfolios hosted on GitHub or your own server.<br /> <small>Currently at version 3.1.6</small><br /><br /> {::nomarkdown}<iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=mmistakes&repo=minimal-mistakes&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=mmistakes&repo=minimal-mistakes&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>{:/nomarkdown}'
 feature_row:
-  - image_path: mm-customizable-feature.png
-    alt: "customizable"
-    title: "Super Customizable"
-    excerpt: "Everything from the menus, sidebars, comments, and more can be configured or set with YAML Front Matter."
-    url: "/docs/configuration/"
-    btn_label: "Learn More"
-  - image_path: mm-responsive-feature.png
-    alt: "fully responsive"
-    title: "Responsive Layouts"
-    excerpt: "Built on HTML5 + CSS3. All layouts are fully responsive with helpers to augment your content."
-    url: "/docs/layouts/"
-    btn_label: "Learn More"
-  - image_path: mm-free-feature.png
-    alt: "100% free"
-    title: "100% Free"
-    excerpt: "Free to use however you want under the MIT License."
-    url: "/docs/license/"
-    btn_label: "Learn More"
-github:
-  - excerpt: '{::nomarkdown}<iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=mmistakes&repo=minimal-mistakes&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=mmistakes&repo=minimal-mistakes&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>{:/nomarkdown}'
-intro:
-  - excerpt: 'Get notified when I add new stuff &nbsp; [<i class="fa fa-twitter"></i> @mmistakes](https://twitter.com/mmistakes){: .btn .btn--twitter}'
+  - image_path: plexicon.png
+    alt: "Log in to Plex"
+    title: "Plex"
+    excerpt: "Access my Plex server.  Credentials required."
+    url: "https://plex.magiccityit.com:32400/web"
+    btn_label: "Log In"
+  - image_path: Apps-Trello-icon.png
+    alt: "My Trello Board"
+    title: "My Trello Board"
+    excerpt: "Check out what projects I'm working on by accessing my Trello board."
+    url: "https://trello.com/b/5RGMMq23"
+    btn_label: "Check it out"
+  - image_path: GitHub-Mark.png
+    alt: "My GitHub Profile"
+    title: "My Github Profile"
+    excerpt: "Looking for a gist or a repo of mine?  Visit my GitHub profile."
+    url: "https://github.com/jonathanelbailey"
+    btn_label: "Check it out"
+    - image_path: linkedInIcon.png
+      alt: "My LinkedIn Profile"
+      title: "My LinkedIn Profile"
+      excerpt: "Want career info?  Check out my LinkedIn profile"
+      url: "https://www.linkedin.com/in/jonathanedwardleebailey"
+      btn_label: "Check it out"
 ---
 
 {% include feature_row id="intro" type="center" %}
