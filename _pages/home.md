@@ -1,5 +1,5 @@
 ---
-layout: archive
+layout: splash
 permalink: /
 date:
 header:
