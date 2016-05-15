@@ -24,12 +24,12 @@ feature_row:
     excerpt: "Looking for a gist or a repo of mine?  Visit my GitHub profile."
     url: "https://github.com/jonathanelbailey"
     btn_label: "Check it out"
-    - image_path: linkedInIcon.png
-      alt: "My LinkedIn Profile"
-      title: "My LinkedIn Profile"
-      excerpt: "Want career info?  Check out my LinkedIn profile"
-      url: "https://www.linkedin.com/in/jonathanedwardleebailey"
-      btn_label: "Check it out"
+  - image_path: linkedInIcon.png
+    alt: "My LinkedIn Profile"
+    title: "My LinkedIn Profile"
+    excerpt: "Want career info?  Check out my LinkedIn profile"
+    url: "https://www.linkedin.com/in/jonathanedwardleebailey"
+    btn_label: "Check it out"
 ---
 
 {% include feature_row id="intro" type="center" %}
