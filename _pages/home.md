@@ -34,4 +34,4 @@ feature_row2:
 ---
 
 {% include feature_row %}
-{% include feature_row2 type="center" %}
+{% include feature_row feature_row_id="feature_row2" type="center" %}
