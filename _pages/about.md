@@ -5,27 +5,27 @@ excerpt: "Get to know me."
 layouts_gallery:
   - url: DSC_9197.jpg
     image_path: DSC_9197.jpg
-    alt: "Just Married"
+    excerpt: "Just Married"
   - url: honeymoon-couple.JPG
     image_path: honeymoon-couple.JPG
-    alt: "On the bus in Costa Maya"
+    excerpt: "On the bus in Costa Maya"
   - url: honeymoon-couple2.JPG
     image_path: honeymoon-couple-2.JPG
-    alt: "At the zoo in Belize"
+    excerpt: "At the zoo in Belize"
 modified: 2016-05-13T20:25:37-06:00
 layouts_gallery2:
   - url: 542203_10151846634443987_1777149313_n.jpg
     image_path: 542203_10151846634443987_1777149313_n.jpg
-    alt: "Greg Ginn of Black Flag"
+    excerpt: "Greg Ginn of Black Flag"
   - url: 778930_10151432742758987_1641262117_o.jpg
     image_path: 778930_10151432742758987_1641262117_o.jpg
-    alt: "Scott Kelly of Neurosis"
+    excerpt: "Scott Kelly of Neurosis"
   - url: 10624773_10153244053043943_5121749777911247828_n.jpg
     image_path: 10624773_10153244053043943_5121749777911247828_n.jpg
-    alt: "Jim Horton of the Reverend Horton Heat"
+    excerpt: "Jim Horton of the Reverend Horton Heat"
   - url: 841166_10151432716383987_1529849127_o.jpg
     image_path: 841166_10151432716383987_1529849127_o.jpg
-    alt: "Mike IX of Eyehategod"
+    excerpt: "Mike IX of Eyehategod"
 ---
 
 {% include base_path %}
