@@ -9,23 +9,20 @@ layouts_gallery:
   - url: honeymoon-couple.JPG
     image_path: honeymoon-couple.JPG
     excerpt: "On the bus in Costa Maya"
-  - url: honeymoon-couple2.JPG
+  - url: honeymoon-couple-2.JPG
     image_path: honeymoon-couple-2.JPG
     excerpt: "At the zoo in Belize"
 modified: 2016-05-13T20:25:37-06:00
 layouts_gallery2:
-  - url: 542203_10151846634443987_1777149313_n.jpg
-    image_path: 542203_10151846634443987_1777149313_n.jpg
+  - url: me-and-greg-ginn.jpg
+    image_path: me-and-greg-ginn.jpg
     excerpt: "Greg Ginn of Black Flag"
-  - url: 778930_10151432742758987_1641262117_o.jpg
-    image_path: 778930_10151432742758987_1641262117_o.jpg
+  - url: me-and-scott-kelly.jpg
+    image_path: me-and-scott-kelly.jpg
     excerpt: "Scott Kelly of Neurosis"
-  - url: 10624773_10153244053043943_5121749777911247828_n.jpg
-    image_path: 10624773_10153244053043943_5121749777911247828_n.jpg
+  - url: me-and-the-rev.jpg
+    image_path: me-and-the-rev.jpg
     excerpt: "Jim Horton of the Reverend Horton Heat"
-  - url: 841166_10151432716383987_1529849127_o.jpg
-    image_path: 841166_10151432716383987_1529849127_o.jpg
-    excerpt: "Mike IX of Eyehategod"
 ---
 
 {% include base_path %}
