@@ -58,7 +58,6 @@
 ### Bug Fixes
 - Fixed Bitbucket URL typo in author sidebar.
 
->>>>>>> release/3.1.0
 ## [3.0.3](https://github.com/mmistakes/minimal-mistakes/releases/tag/3.0.3)
 
 ### Enhancements
