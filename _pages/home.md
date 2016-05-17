@@ -4,7 +4,7 @@ permalink: /
 date:
 header:
   overlay_color: "#5e616c"
-  overlay_image: mm-home-page-feature.jpg
+  overlay_image: code-overlay.jpg
 feature_row:
   - image_path: plexicon-wide.png
     alt: "Log in to Plex"
@@ -31,6 +31,8 @@ feature_row2:
     excerpt: "Want career info?  Check out my LinkedIn profile"
     url: "https://www.linkedin.com/in/jonathanedwardleebailey"
     btn_label: "Check it out"
+intro:
+  - excerpt: "Dollar dollar vars, y'all"
 ---
 
 {% include feature_row %}
