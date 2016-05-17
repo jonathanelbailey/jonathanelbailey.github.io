@@ -4,7 +4,7 @@ permalink: /
 date:
 header:
   overlay_color: "#5e616c"
-  overlay_image: code-overlay.png
+  overlay_image: code-overlay.PNG
 feature_row:
   - image_path: plexicon-wide.png
     alt: "Log in to Plex"
