@@ -8,20 +8,6 @@ layout: default
   {% include page__hero.html %}
 {% endif %}
 
-<div class="archive">
-  {% unless page.header.overlay_color or page.header.overlay_image %}
-    <h1 class="page__title">{{ page.title }}</h1>
-  {% endunless %}
-  <h2>Recent Articles</h2>
-  {% include base_path %}
-  {% capture written_year %}'None'{% endcapture %}
-  {% for post in site.posts limit:5 %}
-    {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
-    {% include archive-single.html %}
-  {% endfor %}
-</div>
-</div>
-
 <div id="main" role="main">
   <article class="splash" itemscope itemtype="http://schema.org/CreativeWork">
     {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
@@ -38,3 +24,17 @@ layout: default
     {% include breadcrumbs.html %}
   {% endunless %}
 {% endif %}
+
+  <div class="archive">
+    {% unless page.header.overlay_color or page.header.overlay_image %}
+      <h1 class="page__title">{{ page.title }}</h1>
+    {% endunless %}
+    <h2>Recent Articles</h2>
+    {% include base_path %}
+    {% capture written_year %}'None'{% endcapture %}
+    {% for post in site.posts limit:5 %}
+      {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
+      {% include archive-single.html %}
+    {% endfor %}
+  </div>
+</div>
