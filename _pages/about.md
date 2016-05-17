@@ -5,24 +5,24 @@ excerpt: "Get to know me."
 layouts_gallery:
   - url: DSC_9197.jpg
     image_path: DSC_9197.jpg
-    excerpt: "Just Married"
+    caption: "Just Married"
   - url: honeymoon-couple.JPG
     image_path: honeymoon-couple.JPG
-    excerpt: "On the bus in Costa Maya"
+    caption: "On the bus in Costa Maya"
   - url: honeymoon-couple-2.JPG
     image_path: honeymoon-couple-2.JPG
-    excerpt: "At the zoo in Belize"
+    caption: "At the zoo in Belize"
 modified: 2016-05-13T20:25:37-06:00
 layouts_gallery2:
   - url: me-and-greg-ginn.jpg
     image_path: me-and-greg-ginn.jpg
-    excerpt: "Greg Ginn of Black Flag"
+    caption: "Greg Ginn of Black Flag"
   - url: me-and-scott-kelly.jpg
     image_path: me-and-scott-kelly.jpg
-    excerpt: "Scott Kelly of Neurosis"
+    caption: "Scott Kelly of Neurosis"
   - url: me-and-the-rev.jpg
     image_path: me-and-the-rev.jpg
-    excerpt: "Jim Horton of the Reverend Horton Heat"
+    caption: "Jim Horton of the Reverend Horton Heat"
 ---
 
 {% include base_path %}
