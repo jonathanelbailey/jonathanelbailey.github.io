@@ -6,7 +6,7 @@ header:
   overlay_color: "#5e616c"
   overlay_image: code-overlay.PNG
   caption:
-excerpt: 'Dollar dollar vars, y'all'
+excerpt: "Dollar dollar vars, y'all"
 feature_row:
   - image_path: plexicon-wide.png
     alt: "Log in to Plex"
