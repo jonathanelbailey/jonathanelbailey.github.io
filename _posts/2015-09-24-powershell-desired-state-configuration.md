@@ -4,10 +4,10 @@ modified:
 categories:
 excerpt: 'An overview of a PowerShell Push Configuration'
 tags:
-  - PowerShell
-  - DSC
-  - DNS
-  - DHCP
+  - powershell
+  - dsc
+  - dns
+  - dhcp
 header:
   overlay_image: 20151010_113344.jpg
   caption: "Photo credit: Jonathan Bailey"
@@ -28,7 +28,7 @@ For the test environment, I used a Server 2012 R2 Core installation.  Before get
 
 {% raw %}
 	winrm qc
-	winrm s winrm/config/client '@{TrustedHosts="*"}'
+	winrm s winrm/config/client ''@{TrustedHosts="\*"}'
 {% endraw %}
 
 This opens up WinRM so it's not recommended to use this configuration in production.  Either add an IP, a fully qualified domain name, or a hostname to it to manually secure it.  Next, we'll have to Provision the server.
