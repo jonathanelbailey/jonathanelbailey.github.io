@@ -14,156 +14,6 @@ date: 2016-05-16T21:41:40-05:00
 ---
 {% include toc %}
 
-<!--
-BASH HISTORY:
-
-4  fdisk
-5  parted /dev/sdb
-6  mkdir /mnt/storage
-7  mount /dev/sdb1 /mnt/storage/
-8  df -h
-9   yum install http://plain.resources.ovirt.org/pub/yum-repo/ovirt-release36.rpm
-10   yum install http://plain.resources.ovirt.org/pub/yum-repo/ovirt-release36.rpm -y
-11  yum -y install ovirt-engine
-12  engine-setup
-13  vi /etc/exports
-14  exportfs
-15  systemctl start nfs.service
-16  systemctl status nfs.service
-17  reboot
-18  systemctl status nfs.serv
-19  systemctl restart nfs.service
-20  cat /etc/exports
-21  ls /mnt/storage/iso
-22  ls /mnt/storage/
-23  ls /mnt/
-24  ls /mnt/storage/
-25  df -h
-26  partprobe
-27  df -h
-28  mount /dev/sdb1 /mnt/storage
-29  df -h
-30  ls /mnt/storage/iso
-31  ls /mnt/storage/
-32  systemctl restart nfs.service
-33  journalctl -xe
-34  chown 36:36 /mnt/storage/iso
-35  mkdir /mnt/storage/data
-36  mkdir /mnt/storage/import_export
-37  chown 36:36 /mnt/storage/data/
-38  chown 36:36 /mnt/storage/import_export/
-39  cat /etc/exports
-40  chmod 755 /mnt/storage/iso
-41  chmod 755 /mnt/storage/data
-42  chmod 755 /mnt/storage/import_export/
-43  systemctl start nfs-server.service
-44  cat /etc/fstab
-45  vi /etc/fstab
-46  reboot
-47  df -h
-48  firewall-cmd
-49  systemctl
-50  systemctl status
-51  systemctl status | grep failed
-52  systemctl status
-53  systemctl status httpd.service
-54  systemctl restart httpd.service
-55  yum uninstall firewalld -y
-56  yum remove firewalld -y
-57  yum install firewalld -y
-58  firewall-cmd --list-all
-59  systemctl start firewalld.service
-60  firewall-cmd --list-all
-61  yum remove firewalld -y
-62  systemctl status nfs-server.service
-63  systemctl start nfs-server.service
-64  journalctl -xe
-65  exportfs -a
-66  cat /etc/exports
-67  systemctl start nfs-server.service
-68  cat /etc/exports
-69  exportfs -h
-70  man exportfs
-71  exportfs -r
-72  man exportfs
-73  exportfs -ra
-74  exportfs -ua
-75  cat /etc/exports
-76  exportfs -a
-77  systemctl start nfs.service
-78  vi /etc/exports
-79  exportfs -ua
-80  systemctl start nfs.service
-81  systemctl status nfs.service
-82  systemctl status nfs.service -l
-83  vi /etc/exports
-84  systemctl status nfs.service -l
-85  systemctl start nfs.service
-86  engine-iso-uploader list
-87  engine-iso-uploader list
-88  engine-iso-uploader -i ISO_DOMAIN rhel-server-7.2-x86_64-dvd.iso
-89  engine-iso-uploader upload -i ISO_DOMAIN rhel-server-7.2-x86_64-dvd.iso
-90  ls /root
-91  cp /root/anaconda-ks.cfg ~
-92   pwd ~
-93  cp /root/anaconda-ks.cfg /home/ovirtadmin/
-94  ssh-keygen
-95  mkdir /home/ovirtadmin/.ssh
-96  ssh-keygen
-97  su ovirtadmin
-98  visudo
-99  vi /etc/ssh/ssh_config
-100  vi /etc/ssh/sshd_config
-101  systemctl restart sshd.service
-102  cat ~/.ssh
-103  cat /.ssh/id_rsa
-104  ls
-105  ls .ssh
-106  cat .ssh/id_rsa
-107  cat .ssh/id_rsa.pub
-108  rm .ssh/*
-109  move id_rsa.pub .ssh/
-110  cp id_rsa.pub .ssh/
-111  rm id_rsa.pub
-112  pwd
-113  cd /home/ovirtadmin/
-114  ls
-115  cd .ssh/
-116  ls
-117  mkdir authorized_keys
-118  cp id_rsa.pub authorized_keys/
-119  rm id_rsa.pub
-120  vi /etc/ssh/sshd_config
-121  mkdir /.ssh
-122  mkdir /.ssh/authorized_keys
-123  cp .ssh/authorized_keys/id_rsa.pub /.ssh/authorized_keys/
-124  systemctl restart sshd.service
-125  vi /etc/ssh/sshd_config
-126  cat .ssh/authorized_keys/id_rsa.pub
-127  systemctl restart sshd.service
-128  lscpu
-129  lshw
-130  yum install lshw -y
-131  lshw -short
-132  hwinfo --short
-133  yum install hwinfo -y
-134  hwinfo --short
-135  inxi
-136  yum install inxi -y
-137  free -m
-138  wget -q -O - http://linux.dell.com/repo/hardware/latest/bootstrap.cgi | bash
-139  wget
-140  yum install wget -y
-141  wget -q -O - http://linux.dell.com/repo/hardware/latest/bootstrap.cgi | bash
-142  yum install dell_ft_install
-143  yum update -y
-144  yum install dell_ft_install
-145  yum install dell-system-update
-146  dsu --inventory
-147  history
-  -->
-
-
 ## Introduction
 
 This guide explains how to install Ovirt, a virtualization technology from Redhat that's the unstable release of RHEV.
@@ -247,22 +97,176 @@ df -h                                                                # check the
 
 ### Set up NFS
 
+Next, we'll need to ensure that NFS is properly configured.  If you're not familiar with NFS, it's a service that shares folder on the server to client host.  To set up the server, first install the packages:
+
+{% highlight bash %}
+yum install nfs-utils nfs-utils-lib
+{% endhighlight %}
+
+Then, create your folders.  I created mine in my mounted partition:
+
+{% highlight bash %}
+mkdir /mnt/storage/iso /mnt/storage/data /mnt/storage/import_export         # creates the directories
+chmod /mnt/storage/iso /mnt/storage/data /mnt/storage/import_export         # sets the proper permissions on the dirs
+chown 36:36 /mnt/storage/data /mnt/storage/iso /mnt/storage/import_export   # sets ownership of the folders to the proper gid.
+{% endhighlight %}
+
+Then, configure the exports file and start the service:
+
+{% highlight bash %}
+echo '/mnt/storage/data           \*(rw,sync,no_subtree_check,all_squash,anonuid=36,anongid=36)' >> /etc/exports
+echo '/mnt/storage/import_export  \*(rw,sync,no_subtree_check,all_squash,anonuid=36,anongid=36)' >> /etc/exports
+exportfs -a                       # initializes the newly modified exports file
+systemctl start nfs.service       # start the nfs service
+{% endhighlight %}
+
 ## Installing Ovirt
+
+Next, let's get the Ovirt installation started:
+
+{% highlight bash %}
+yum install http://plain.resources.ovirt.org/pub/yum-repo/ovirt-release36.rpm -y # downloads the ovirt repo
+yum -y install ovirt-engine                                                      # installs the libraries
+engine-setup                                                                     # run the installation routine
+{% endhighlight %}
 
 ### Engine Installation
 
-### Host installation
+If you follow the instructions and use the default installation, you should get an output like this:
+
+{% highlight bash %}
+[ INFO  ] Stage: Initializing
+[ INFO  ] Stage: Environment setup
+        Configuration files: ['/etc/ovirt-engine-setup.conf.d/10-packaging.conf']
+        Log file: /var/log/ovirt-engine/setup/ovirt-engine-setup-20140310163840.log
+        Version: otopi-1.2.0_rc2 (otopi-1.2.0-0.7.rc2.fc19)
+[ INFO  ] Stage: Environment packages setup
+[ INFO  ] Stage: Programs detection
+[ INFO  ] Stage: Environment setup
+[ INFO  ] Stage: Environment customization
+
+        --== PRODUCT OPTIONS ==--
+        --== PACKAGES ==--
+
+[ INFO  ] Checking for product updates...
+[ INFO  ] No product updates found
+
+        --== NETWORK CONFIGURATION ==--
+
+        Host fully qualified DNS name of this server [server.name]: example.ovirt.org
+        Setup can automatically configure the firewall on this system.
+        Note: automatic configuration of the firewall may overwrite current settings.
+        Do you want Setup to configure the firewall? (Yes, No) [Yes]:
+[ INFO  ] firewalld will be configured as firewall manager.
+
+        --== DATABASE CONFIGURATION ==--
+
+        Where is the Engine database located? (Local, Remote) [Local]:
+        Setup can configure the local postgresql server automatically for the engine to run. This may conflict with existing applications.
+        Would you like Setup to automatically configure postgresql and create Engine database, or prefer to perform that manually? (Automatic, Manual) [Automatic]:
+
+        --== OVIRT ENGINE CONFIGURATION ==--
+
+        Application mode (Both, Virt, Gluster) [Both]:
+        Default storage type: (NFS, FC, ISCSI, POSIXFS) [NFS]:
+        Engine admin password:
+        Confirm engine admin password:
+
+        --== PKI CONFIGURATION ==--
+
+        Organization name for certificate [ovirt.org]:
+
+        --== APACHE CONFIGURATION ==--
+
+        Setup can configure apache to use SSL using a certificate issued from the internal CA.
+
+        Do you wish Setup to configure that, or prefer to perform that manually? (Automatic, Manual) [Automatic]:
+        Setup can configure the default page of the web server to present the application home page. This may conflict with existing applications.
+        Do you wish to set the application as the default page of the web server? (Yes, No) [Yes]:
+
+        --== SYSTEM CONFIGURATION ==--
+
+        Configure WebSocket Proxy on this machine? (Yes, No) [Yes]:
+        Configure an NFS share on this server to be used as an ISO Domain? (Yes, No) [Yes]:
+        Local ISO domain path [/var/lib/exports/iso-20140310143916]:
+        Local ISO domain ACL - note that the default will restrict access to example.ovirt.org only, for security reasons [example.ovirt.org(rw)]:
+        Local ISO domain name [ISO_DOMAIN]:
+
+        --== MISC CONFIGURATION ==--
+
+        --== END OF CONFIGURATION ==--
+{% endhighlight %}
+
+What the routine installs is the ovirt administration server, and an ovirt host server.  Basically, it's an all-in-one configuration.  Everything you need to get a VM up and running has just been installed.  To access the administration portal, go to `https://<NAMEOFYOURSERVER>/webadmin`.  Enter admin as your username, and enter the password you provided in the installation.
 
 ## Configuring Ovirt
 
+The next step is to make your first initial configurations so that you can start spinning up VMs.  Let's get started.
+
 ### Create Your First Datacenter
+
+The datacenter is a top level organizational structure.  Consider it a top-level folder to organize your hosts.  By default, the 'default' datacenter is created for you.  To create a new datacenter, click 'Data Centers' in the left hand pane, and click 'New' in the right:
+
+{% capture fig_img %}
+![output]({{ base_path }}/images/administration-panel.png)
+{% endcapture %}
+
+Name your datacenter, and select storage type: shared.  Click ok, and you'll be taken to a new popup with a list of tasks to complete the configuration of your new datacenter.  The first step is to configure clusters.
+
+### Configure Clusters
+
+Once you've gotten the datacenter configured, you'll want to configure your cluster, which is a collection of Ovirt Hosts (the physical servers that run Ovirt).  Since this is only being done on one machine for now, this part's easy.  By default, the 'default' data center has a cluster called 'default'.  Let's create a cluster for our new datacenter:
+
+{% capture fig_img %}
+![output]({{ base_path }}/images/create-cluster.png)
+{% endcapture %}
+
+Enter in the appropriate information on the cluster, and click ok.  Next, let's configure the host.
 
 ### Configure Your Host
 
+The host requires a little bit more configuration:
+
+{% capture fig_img %}
+![output]({{ base_path }}/images/new-host.png)
+{% endcapture %}
+
+enter the host name, IP, and root password.  Click advanced params and uncheck 'Automatically configure host firewall'.  This will block port 80, thus disconnecting you from the server.  Click ok, and continue to storage.
+
 ### Configuring Storage
 
-### Configure Power Management
+This is where things get a bit tricky.  We're going to create 3 new domains with function values 'data' and 'export'.  Enter their names, and type the export path, which is going to be the <SERVERADDRESS>:/PATH/TO/SHARE and click ok.  Next, let's import the iso domain that we created during the engine installation.  Under the data center page, look at the bottom right hand pane and select the 'storage' tab.  Click 'attach iso'
+
+{% capture fig_img %}
+![output]({{ base_path }}/images/iso-domain.png)
+{% endcapture %}
+
+Select 'ISO_DOMAIN' and attach the domain to your datacenter.
+
+### Configure Networks
+
+Click on 'networks' on the left pane, and click 'new'.  Name your network.  If you're going to add the network to a VLAN, you'll probably want to have that VLAN number in the name of the network.  If not, don't worry, vlan tagging is optional.
+
+{% capture fig_img %}
+![output]({{ base_path }}/images/new-network.png)
+{% endcapture %}
 
 ### Upload ISOs
 
+Next, ssh into your ovirt box, and upload/download some initial ISOs to import into Ovirt for use.  CentOS is free, and there's now a free tier [developer's license](http://developers.redhat.com/blog/2016/03/31/no-cost-rhel-developer-subscription-now-available/) for RHEL.
+
+{% highlight bash %}
+engine-iso-uploader upload -i ISO_DOMAIN rhel-server-7.2-x86_64-dvd.iso
+{% endhighlight %}
+
 ### Creating a Template VM
+
+From there, you'll be able to create a brand new VM, and configure it to your liking.  First, click on 'VMs' in the left hand pane, and click 'new' in the right hand pane.
+
+{% capture fig_img %}
+![output]({{ base_path }}/images/new-vm.png)
+{% endcapture %}
+
+There's a score of options that you can play with to configure your VM, but for now we'll just focus on getting a demo machine up and running.  Select RHEL as your operating system, and select 'tiny' as your instance type.  Optimize for server, and enter the name of the machine.
+
+In instances images, click 'create', and create a small 8GB disk and attach it to the machine.  Next, select your network for the VM's NIC to connect to.  Under 'boot options' tab, add a cd drive, and attach the ISO to the drive.  Click okay, and start the machine. Voila!  You've created your first VM!

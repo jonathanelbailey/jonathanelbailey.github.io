@@ -58,7 +58,7 @@ Obviously I support an RDP environment, so the RDP switch referred to our produc
 for ease of use, I separated the logic of the code into functions.  Abstracting and simplifying each function
 creates more readable and maintainable code.  Here's the step-by-step process that I took to ensure backups were created:
 
-#### Remove-CheckpointsForExport
+### Remove-CheckpointsForExport
 
 The first step is to ensure that any checkpoints/snapshot differencing disks are merged back into the VM's VHDX file:
 
@@ -83,7 +83,7 @@ Function Remove-Checkpointsforexport{
 
 the function, when run, will simply go through each virtual machine in the category and remove any checkpoints.
 
-#### New-VmExportArchive
+### New-VmExportArchive
 
 Next, we'll need to ensure that the VMs are ready for upload to FTP ( I know, but yes.  At the time I was using this tool, we were using FTP for backups.  It was not my design.)
 New-VmExportArchive will grab the Exported VMs and archive them for upload:
@@ -107,7 +107,7 @@ Function New-VmExportArchive{
 }
 {% endhighlight %}
 
-#### Get-VmExports
+### Get-VmExports
 
 Get-VmExports is the function that brings the rest of the functions together for an actionable command:
 
@@ -148,12 +148,12 @@ Function Get-VMExports{
 
 It ensures checkpoints are cleared, exports the VMs, and archives them for upload.
 
-#### Initializing the Functions
+### Initializing the Functions
 
 to run it, type:
 
 {% highlight powershell %}
-	get-vmexports -vmscope ALL -removecheckpoint -path d:\exports
+get-vmexports -vmscope ALL -removecheckpoint -path d:\exports
 {% endhighlight %}
 
 ## The Gist

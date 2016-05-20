@@ -22,7 +22,7 @@ and there's a vibrant open-source community that supports the creation of resour
 Furthermore, if there's not a resource available that you need, you can always create a resource yourself.  In this piece, I'll be walking through how to create a DSC Push configuration that will Provision and configure
 a Server 2012 installation with the DNS and DHCP server roles.
 
-#### Environment Configuration
+### Environment Configuration
 
 For the test environment, I used a Server 2012 R2 Core installation.  Before getting started, please run the following from a shell on the test server:
 
@@ -63,7 +63,7 @@ get-module -name dscresources
 
 you should get a giant list of resources.  The ones we'll be interested in today are xNetworking, xDhcpServer, and xDnsServer.  Since the resources are loaded, let's go ahead and get started with planning our server configuration.
 
-#### Configuration Requirements
+### Configuration Requirements
 
 Our server's going to be providing DNS and DHCP services to a theoretical web farm, say 3 web servers, a caching server and a SQL server.  Here's the network configuration:
 
@@ -128,7 +128,7 @@ configuration Name
 }
 {% endhighlight %}
 
-#### Networking
+### Networking
 
 Here we see that the configuration keyword acts much like a function.  Inside the function, you'll see the node keyword.  This references all the machines that this configuration in particular will apply to.
 Inside are a couple of resource providers.  These are the bread and butter of DSC.  Resource providers offer declarative domain specific language that simplifies the configuration process.  Resources abstract all the
@@ -172,7 +172,7 @@ But...how did we get from there to here?  Well, we have to look at the documenta
 call from to configure a network interface.  You'll also notice that there's a resource to configure a default gateway.  I didn't actually use that because the 192.168.0.0 network is a dummy network for what I'm using it for.
 But, if using xDefaultGatewayAddress suits your environment better, by all means, go for it.
 
-#### Server Roles
+### Server Roles
 
 Next, let's add the resource providers for Windows Server Roles.  They are listed under Windows Features, which is built in by default.
 
@@ -180,18 +180,18 @@ Next, let's add the resource providers for Windows Server Roles.  They are liste
 {: .notice}
 
 {% highlight powershell %}
-        WindowsFeature DHCP
-        {
-           Ensure = 'Present'
-           Name = 'DHCP'
-           DependsOn = '[xIPAddress]ServerIP','[xDNSServerAddress]ServerDNS'
-        }
-        WindowsFeature DNS
-        {
-           Ensure = 'Present'
-           Name = 'DNS'
-           DependsOn = '[xIPAddress]ServerIP','[xDNSServerAddress]ServerDNS'
-        }
+WindowsFeature DHCP
+{
+   Ensure = 'Present'
+   Name = 'DHCP'
+   DependsOn = '[xIPAddress]ServerIP','[xDNSServerAddress]ServerDNS'
+}
+WindowsFeature DNS
+{
+   Ensure = 'Present'
+   Name = 'DNS'
+   DependsOn = '[xIPAddress]ServerIP','[xDNSServerAddress]ServerDNS'
+}
 {% endhighlight %}
 
 As you can see, creation of the Windows Feature resource providers are pretty straight forward.  But, there's a new property we should look at into further detail:  `DependsOn`.  To ensure that a DSC configuration
@@ -200,93 +200,93 @@ works properly, there must be forward thought regarding how a resource provider 
 If you're already familiar with how DNS Servers work, you'll know immediately that the DNS server installation wizard doesn't like interfaces with DHCP addresses.  Therefore, it's prudent to create your static IP
 information before you install that feature.  The same goes for the DHCP role as well.  The way it works is that you call the resource in braces, and then reference the given name like `[SomeResource]FriendlyName`.
 
-#### DHCP Server Scope
+### DHCP Server Scope
 
 For our next configuration step, we'll set DHCP Scope and Options:
 
 {% highlight powershell %}
-        xDhcpServerScope ServerScope
-        {
-            IPStartRange = "192.168.0.3"
-            IPEndRange = "192.168.0.7"
-            Name = "TestScope1"
-            SubnetMask = "255.255.255.240"
-            State = "Active"            
-            Ensure = "Present"
-            LeaseDuration = "7:00:00"
-            DependsOn = "[WindowsFeature]DHCP"
+xDhcpServerScope ServerScope
+{
+    IPStartRange = "192.168.0.3"
+    IPEndRange = "192.168.0.7"
+    Name = "TestScope1"
+    SubnetMask = "255.255.255.240"
+    State = "Active"            
+    Ensure = "Present"
+    LeaseDuration = "7:00:00"
+    DependsOn = "[WindowsFeature]DHCP"
 
-        }
-        xDhcpServerOption ServerOpt
-        {
-            ScopeID = $ScopeID
-            DnsServerIPAddress = $ServerIP
-            DnsDomain = "TestDomain"
-            AddressFamily = "IPv4"            
-            Ensure = "Present"
-            DependsOn = "[xDhcpServerScope]ServerScope"
-        }
+}
+xDhcpServerOption ServerOpt
+{
+    ScopeID = $ScopeID
+    DnsServerIPAddress = $ServerIP
+    DnsDomain = "TestDomain"
+    AddressFamily = "IPv4"            
+    Ensure = "Present"
+    DependsOn = "[xDhcpServerScope]ServerScope"
+}
 {% endhighlight %}
 
 **Tip:** I'd like to point out that the `DependsOn` property in ServerOpt doesn't explicitly depend on DHCP being installed.  It depends on ServerScope, which depends on DHCP being installed.  Useful information for efficient coding.
 {:notice}
 
-#### DHCP Reservations
+### DHCP Reservations
 
 Our next step is the configuration of DHCP reservations.  If you're wondering where I got some of the data from, like
 MAC address, I just used a MAC address generator.  These servers only exist theoretically at the moment.
 
 {% highlight powershell %}
-        xDhcpServerReservation Web1Res
-        {
-            ScopeID = $ScopeID
-            IPAddress = '192.168.0.3'
-            ClientMACAddress = 'FF-CA-2D-36-B6-4A'
-            Name = 'Web1'
-            AddressFamily = 'IPv4'
-            Ensure = 'Present'
-            DependsOn = '[xDhcpServerScope]ServerScope'  
-        }
-        xDhcpServerReservation Web2Res
-        {
-            ScopeID = $ScopeID
-            IPAddress = '192.168.0.4'
-            ClientMACAddress = '5A-62-17-7D-87-FA'
-            Name = 'Web2'
-            AddressFamily = 'IPv4'
-            Ensure = 'Present'
-            DependsOn = '[xDhcpServerScope]ServerScope'  
-        }
-        xDhcpServerReservation Web3Res
-        {
-            ScopeID = $ScopeID
-            IPAddress = '192.168.0.5'
-            ClientMACAddress = 'AE-6B-C3-DE-39-1B'
-            Name = 'Web3'
-            AddressFamily = 'IPv4'
-            Ensure = 'Present'
-            DependsOn = '[xDhcpServerScope]ServerScope'
-        }
-        xDhcpServerReservation SQL1Res
-        {
-            ScopeID = $ScopeID
-            IPAddress = '192.168.0.6'
-            ClientMACAddress = '59-72-C2-C4-76-79'
-            Name = 'SQL1'
-            AddressFamily = 'IPv4'
-            Ensure = 'Present'
-            DependsOn = '[xDhcpServerScope]ServerScope'  
-        }
-        xDhcpServerReservation Cache1Res
-        {
-            ScopeID = $ScopeID
-            IPAddress = '192.168.0.7'
-            ClientMACAddress = 'A2-A1-AC-4D-06-8F'
-            Name = 'Cache1'
-            AddressFamily = 'IPv4'
-            Ensure = 'Present'
-            DependsOn = '[xDhcpServerScope]ServerScope'  
-        }
+xDhcpServerReservation Web1Res
+{
+    ScopeID = $ScopeID
+    IPAddress = '192.168.0.3'
+    ClientMACAddress = 'FF-CA-2D-36-B6-4A'
+    Name = 'Web1'
+    AddressFamily = 'IPv4'
+    Ensure = 'Present'
+    DependsOn = '[xDhcpServerScope]ServerScope'  
+}
+xDhcpServerReservation Web2Res
+{
+    ScopeID = $ScopeID
+    IPAddress = '192.168.0.4'
+    ClientMACAddress = '5A-62-17-7D-87-FA'
+    Name = 'Web2'
+    AddressFamily = 'IPv4'
+    Ensure = 'Present'
+    DependsOn = '[xDhcpServerScope]ServerScope'  
+}
+xDhcpServerReservation Web3Res
+{
+    ScopeID = $ScopeID
+    IPAddress = '192.168.0.5'
+    ClientMACAddress = 'AE-6B-C3-DE-39-1B'
+    Name = 'Web3'
+    AddressFamily = 'IPv4'
+    Ensure = 'Present'
+    DependsOn = '[xDhcpServerScope]ServerScope'
+}
+xDhcpServerReservation SQL1Res
+{
+    ScopeID = $ScopeID
+    IPAddress = '192.168.0.6'
+    ClientMACAddress = '59-72-C2-C4-76-79'
+    Name = 'SQL1'
+    AddressFamily = 'IPv4'
+    Ensure = 'Present'
+    DependsOn = '[xDhcpServerScope]ServerScope'  
+}
+xDhcpServerReservation Cache1Res
+{
+    ScopeID = $ScopeID
+    IPAddress = '192.168.0.7'
+    ClientMACAddress = 'A2-A1-AC-4D-06-8F'
+    Name = 'Cache1'
+    AddressFamily = 'IPv4'
+    Ensure = 'Present'
+    DependsOn = '[xDhcpServerScope]ServerScope'  
+}
 {% endhighlight %}
 
 ---
@@ -301,19 +301,19 @@ behind the scenes of DSC.
 Let's first start with the [resources available](https://technet.microsoft.com/en-us/library/dn282130.aspx):
 
 {% highlight powershell %}
-	Script [string] #ResourceName
-	{
-		GetScript = [string]
-		SetScript = [string]
-		TestScript = [string]
-		[ Credential = [PSCredential] ]
-		[ DependsOn = [string[]] ]
-	}
+Script [string] #ResourceName
+{
+	GetScript = [string]
+	SetScript = [string]
+	TestScript = [string]
+	[ Credential = [PSCredential] ]
+	[ DependsOn = [string[]] ]
+}
 {% endhighlight %}
 
 The main properties we're going to be looking at are `GetScript`,`SetScript`, and `TestScript`.  
 
-#### GetScript
+### GetScript
 
 `GetScript` is used by the `Get-DscConfiguration` CMDlet to bring back a hashtable -- which we must build ourselves.  For this step, we've got to figure
 out what we want the script resource to do.  Well, we want to make sure the DNS server points us to our web farm.  So, we've got
@@ -321,35 +321,37 @@ to make sure it has the proper A records for each machine.  Secondly, we also wa
 in the web pool.
 
 {% highlight powershell %}
-GetScript = { return @{ DNSZone = ((get-dnsserverzone).zonename | where-object {$_ -eq 'internal.contoso.org'})
-						ARPZone = ((get-dnsserverzone).zonename | where-object {$_ -eq '0.0.168.192.in-addr.arpa'})
-						 Web1ARec = ((get-dnsserverresourcerecord -zonename 'internal.contoso.org' -name 'webpool1' `
-									 | select-object -expandproperty recorddata).ipv4address.ipaddresstostring | `
-									 where-object {$_ -eq '192.168.0.3'})
-						 Web2ARec = ((get-dnsserverresourcerecord -zonename 'internal.contoso.org' -name 'webpool1' `
-									 | select-object -expandproperty recorddata).ipv4address.ipaddresstostring | `
-									  where-object {$_ -eq '192.168.0.4'})
-						 Web3ARec = ((get-dnsserverresourcerecord -zonename 'internal.contoso.org' -name 'webpool1' `
-									 | select-object -expandproperty recorddata).ipv4address.ipaddresstostring | `
-									  where-object {$_ -eq '192.168.0.5'})
-						 SQL1ARec = ((get-dnsserverresourcerecord -zonename 'internal.contoso.org' -name 'sql1' `
-									 | select-object -expandproperty recorddata).ipv4address.ipaddresstostring | `
-									 where-object {$_ -eq '192.168.0.6'})
-						 Cache1ARec = ((get-dnsserverresourcerecord -zonename 'internal.contoso.org' -name 'cache1' `
-									   | select-object -expandproperty recorddata).ipv4address.ipaddresstostring | `
-									   where-object {$_ -eq '192.168.0.7'})  
-						 RoundRobin = ((get-dnsserver | select-object -expandproperty serversettings).roundrobin)
-						 Fwdr1 = ((get-dnsserver | select-object -expandproperty serversettings).ipaddress.ipaddresstostring `
-								  | where-object {$_ -eq '8.8.8.8'})
-						 Fwdr2 = ((get-dnsserver | select-object -expandproperty serversettings).ipaddress.ipaddresstostring `
-								  | where-object {$_ -eq '4.2.2.2'})   
-					   }
-			}
+GetScript = {
+  return @{
+    DNSZone = ((get-dnsserverzone).zonename | where-object {$_ -eq 'internal.contoso.org'})
+		ARPZone = ((get-dnsserverzone).zonename | where-object {$_ -eq '0.0.168.192.in-addr.arpa'})
+		Web1ARec = ((get-dnsserverresourcerecord -zonename 'internal.contoso.org' -name 'webpool1' `
+			| select-object -expandproperty recorddata).ipv4address.ipaddresstostring | `
+			   where-object {$_ -eq '192.168.0.3'})
+		Web2ARec = ((get-dnsserverresourcerecord -zonename 'internal.contoso.org' -name 'webpool1' `
+			| select-object -expandproperty recorddata).ipv4address.ipaddresstostring | `
+				 where-object {$_ -eq '192.168.0.4'})
+		Web3ARec = ((get-dnsserverresourcerecord -zonename 'internal.contoso.org' -name 'webpool1' `
+			| select-object -expandproperty recorddata).ipv4address.ipaddresstostring | `
+				 where-object {$_ -eq '192.168.0.5'})
+		SQL1ARec = ((get-dnsserverresourcerecord -zonename 'internal.contoso.org' -name 'sql1' `
+			| select-object -expandproperty recorddata).ipv4address.ipaddresstostring | `
+				 where-object {$_ -eq '192.168.0.6'})
+		Cache1ARec = ((get-dnsserverresourcerecord -zonename 'internal.contoso.org' -name 'cache1' `
+			| select-object -expandproperty recorddata).ipv4address.ipaddresstostring | `
+				 where-object {$_ -eq '192.168.0.7'})  
+		RoundRobin = ((get-dnsserver | select-object -expandproperty serversettings).roundrobin)
+		Fwdr1 = ((get-dnsserver | select-object -expandproperty serversettings).ipaddress.ipaddresstostring `
+			| where-object {$_ -eq '8.8.8.8'})
+		Fwdr2 = ((get-dnsserver | select-object -expandproperty serversettings).ipaddress.ipaddresstostring `
+			| where-object {$_ -eq '4.2.2.2'})   
+	}
+}
 {% endhighlight %}
 
 As you can see, we create a hashtable that returns the CNAME for the IPs provided.
 
-#### SetScript
+### SetScript
 
 Next, we need to be able to apply whatever settings we need to the script.  `SetScript` will allow us to use the
 `Start-DscConfiguration` CMDlet to apply the settings to the server if the settings aren't what they should be:
@@ -381,26 +383,29 @@ SetScript = {
 				  -PtrDomainName 'sql1.internal.contoso.org'
 			  Add-DnsServerResourceRecord -name '7' -Ptr -ZoneName '0.0.168.192.in-addr.arpa' `
 				  -PtrDomainName 'cache1.internal.contoso.org'
-			 }
+}
 {% endhighlight %}
 
-#### TestScript
+### TestScript
 
 The final property is what `Start-DscConfiguration` uses to determine if it needs to apply the desired settings on the node.
 It simply returns a value of true or false:
 
 {% highlight powershell %}
-TestScript = { if((get-dnsserverzone).zonename -ccontains '0.0.168.192.in-addr.arpa' -and 'internal.contoso.org') `
-				   {return (Get-DnsServerResourceRecord -zoneName 'internal.contoso.org' -name 'webpool1' `
-						| select-object -expandproperty recorddata).ipv4address.ipaddresstostring -ccontains `
-						'192.168.0.3' -and '192.168.0.4' -and '192.168.0.5'}
-			   else{
-				 return $false
-			   }
-			 }
+TestScript = {
+  if((get-dnsserverzone).zonename -ccontains '0.0.168.192.in-addr.arpa' -and 'internal.contoso.org') `
+		{
+      return (Get-DnsServerResourceRecord -zoneName 'internal.contoso.org' -name 'webpool1' `
+				| select-object -expandproperty recorddata).ipv4address.ipaddresstostring -ccontains `
+					'192.168.0.3' -and '192.168.0.4' -and '192.168.0.5'
+    }
+		else{
+			return $false
+		}
+}
 {% endhighlight %}
 
-#### Result
+### Result
 
 And here's what the entire resource looks like:
 
@@ -433,37 +438,43 @@ Script DNSConfig{
 				  Add-DnsServerResourceRecord -name '7' -Ptr -ZoneName '0.0.168.192.in-addr.arpa' `
 					  -PtrDomainName 'cache1.internal.contoso.org'
 				 }
-	TestScript = { if((get-dnsserverzone).zonename -ccontains '0.0.168.192.in-addr.arpa' -and 'internal.contoso.org') `
-					   {return (Get-DnsServerResourceRecord -zoneName 'internal.contoso.org' -name 'webpool1' `
-							| select-object -expandproperty recorddata).ipv4address.ipaddresstostring -ccontains `
-							'192.168.0.3' -and '192.168.0.4' -and '192.168.0.5'}
-				   else{
-					 return $false
-				   }
-				 }
-	GetScript = { return @{ DNSZone = ((get-dnsserverzone).zonename | where-object {$_ -eq 'internal.contoso.org'})
-							ARPZone = ((get-dnsserverzone).zonename | where-object {$_ -eq '0.0.168.192.in-addr.arpa'})
-							Web1ARec = ((get-dnsserverresourcerecord -zonename 'internal.contoso.org' -name 'webpool1' `
-										| select-object -expandproperty recorddata).ipv4address.ipaddresstostring | `
-										 where-object {$_ -eq '192.168.0.3'})
-							Web2ARec = ((get-dnsserverresourcerecord -zonename 'internal.contoso.org' -name 'webpool1' `
-										 | select-object -expandproperty recorddata).ipv4address.ipaddresstostring | `
-										  where-object {$_ -eq '192.168.0.4'})
-							Web3ARec = ((get-dnsserverresourcerecord -zonename 'internal.contoso.org' -name 'webpool1' `
-										| select-object -expandproperty recorddata).ipv4address.ipaddresstostring | `
-										 where-object {$_ -eq '192.168.0.5'})
-							SQL1ARec = ((get-dnsserverresourcerecord -zonename 'internal.contoso.org' -name 'sql1' `
-										| select-object -expandproperty recorddata).ipv4address.ipaddresstostring | `
-										 where-object {$_ -eq '192.168.0.6'})
-							Cache1ARec = ((get-dnsserverresourcerecord -zonename 'internal.contoso.org' -name 'cache1' `
-										  | select-object -expandproperty recorddata).ipv4address.ipaddresstostring | `
-										   where-object {$_ -eq '192.168.0.7'})  
-							RoundRobin = ((get-dnsserver | select-object -expandproperty serversettings).roundrobin)
-							Fwdr1 = ((get-dnsserver | select-object -expandproperty serversettings).ipaddress.ipaddresstostring `
-									 | where-object {$_ -eq '8.8.8.8'})
-							Fwdr2 = ((get-dnsserver | select-object -expandproperty serversettings).ipaddress.ipaddresstostring `
-									 | where-object {$_ -eq '4.2.2.2'})   
-						   }
+         TestScript = {
+           if((get-dnsserverzone).zonename -ccontains '0.0.168.192.in-addr.arpa' -and 'internal.contoso.org') `
+         		{
+               return (Get-DnsServerResourceRecord -zoneName 'internal.contoso.org' -name 'webpool1' `
+         				| select-object -expandproperty recorddata).ipv4address.ipaddresstostring -ccontains `
+         					'192.168.0.3' -and '192.168.0.4' -and '192.168.0.5'
+             }
+         		else{
+         			return $false
+         		}
+         }
+         GetScript = {
+           return @{
+             DNSZone = ((get-dnsserverzone).zonename | where-object {$_ -eq 'internal.contoso.org'})
+         		ARPZone = ((get-dnsserverzone).zonename | where-object {$_ -eq '0.0.168.192.in-addr.arpa'})
+         		Web1ARec = ((get-dnsserverresourcerecord -zonename 'internal.contoso.org' -name 'webpool1' `
+         			| select-object -expandproperty recorddata).ipv4address.ipaddresstostring | `
+         			   where-object {$_ -eq '192.168.0.3'})
+         		Web2ARec = ((get-dnsserverresourcerecord -zonename 'internal.contoso.org' -name 'webpool1' `
+         			| select-object -expandproperty recorddata).ipv4address.ipaddresstostring | `
+         				 where-object {$_ -eq '192.168.0.4'})
+         		Web3ARec = ((get-dnsserverresourcerecord -zonename 'internal.contoso.org' -name 'webpool1' `
+         			| select-object -expandproperty recorddata).ipv4address.ipaddresstostring | `
+         				 where-object {$_ -eq '192.168.0.5'})
+         		SQL1ARec = ((get-dnsserverresourcerecord -zonename 'internal.contoso.org' -name 'sql1' `
+         			| select-object -expandproperty recorddata).ipv4address.ipaddresstostring | `
+         				 where-object {$_ -eq '192.168.0.6'})
+         		Cache1ARec = ((get-dnsserverresourcerecord -zonename 'internal.contoso.org' -name 'cache1' `
+         			| select-object -expandproperty recorddata).ipv4address.ipaddresstostring | `
+         				 where-object {$_ -eq '192.168.0.7'})  
+         		RoundRobin = ((get-dnsserver | select-object -expandproperty serversettings).roundrobin)
+         		Fwdr1 = ((get-dnsserver | select-object -expandproperty serversettings).ipaddress.ipaddresstostring `
+         			| where-object {$_ -eq '8.8.8.8'})
+         		Fwdr2 = ((get-dnsserver | select-object -expandproperty serversettings).ipaddress.ipaddresstostring `
+         			| where-object {$_ -eq '4.2.2.2'})   
+         	}
+         }
 				}
 	DependsOn = '[WindowsFeature]DNS'
 }
@@ -478,7 +489,7 @@ The final part is initializing the configuration:
 {% highlight Powershell %}
 Set-Location c:
 
-#### Push the DSC configuration to the Test server
+### Push the DSC configuration to the Test server
 TestNodeConfig -machinename 'TestNode' -serverIP '192.168.0.2' -scopeid '192.168.0.0'
 
 start-dscconfiguration -computername 'TestNode' -path 'c:\testnodeconfig'

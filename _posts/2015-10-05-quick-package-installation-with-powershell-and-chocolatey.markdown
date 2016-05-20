@@ -27,7 +27,7 @@ its reliability and abstraction makes for a perfect tool that simplifies the dep
 Chocolatey, run the following:
 
 {% highlight powershell %}
-	iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))
+iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))
 {% endhighlight %}
 
 #### Choco Packages
@@ -43,14 +43,16 @@ Once you've installed chocolatey on your system, it's extremely simple to instal
 Building on this information, we can now build a script:
 
 {% highlight powershell %}
-	$scriptblock = {choco.exe install adobereader -y
-					choco.exe install openoffice -y}
+$scriptblock = {
+  choco.exe install adobereader -y
+	choco.exe install openoffice -y
+}
 
-	$servers = Get-ADComputer -Filter * -Properties * | Where-Object name -match $SomeName
-	foreach ($s in $servers){
-		$session = new-pssession $s
-		Invoke-Command -ScriptBlock $scriptblock -Session $session
-	}
+$servers = Get-ADComputer -Filter * -Properties * | Where-Object name -match $SomeName
+foreach ($s in $servers){
+	$session = new-pssession $s
+	Invoke-Command -ScriptBlock $scriptblock -Session $session
+}
 {% endhighlight %}
 
 #### Step By Step
@@ -61,24 +63,26 @@ to find all servers that will be subject to remote installation.
 The first part of the script creates a script block - or a lambda if it matters - and assigns it to a variable:
 
 {% highlight powershell %}
-	$scriptblock = {choco.exe install adobereader -y
-					choco.exe install openoffice -y}
+$scriptblock = {
+  choco.exe install adobereader -y
+	choco.exe install openoffice -y
+}
 {% endhighlight %}
 
 Next, Active Directory is queried to get a list of servers who require installation.  In my environment, this is
 easily done with identifiable computer names:
 
 {% highlight powershell %}
-	$servers = Get-ADComputer -Filter * -Properties * | Where-Object name -match $SomeName
+$servers = Get-ADComputer -Filter * -Properties * | Where-Object name -match $SomeName
 {% endhighlight %}
 
 And finally, the remote sessions are created and the script block is run:
 
 {% highlight powershell %}
-	foreach ($s in $servers){
-		$session = new-pssession $s
-		Invoke-Command -ScriptBlock $scriptblock -Session $session
-	}
+foreach ($s in $servers){
+	$session = new-pssession $s
+	Invoke-Command -ScriptBlock $scriptblock -Session $session
+}
 {% endhighlight %}
 
 ## The Gist
