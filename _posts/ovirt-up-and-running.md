@@ -1,6 +1,6 @@
 ---
 title: "Ovirt Up and Running"
-modified:
+modified: 2016-05-19T19:33:10-05:00
 categories:
 excerpt: "Learn how to deploy Red Hat's open-source virtualization software, based on RHEV."
 tags:
@@ -10,7 +10,7 @@ tags:
 header:
   overlay_image: the-black-crowes-overlay.jpg
   caption: "Photo credit: Jonathan Bailey"
-date: 2016-05-19T17:41:40-05:00
+date: 2016-05-16T21:41:40-05:00
 ---
 
 {% include toc %}
