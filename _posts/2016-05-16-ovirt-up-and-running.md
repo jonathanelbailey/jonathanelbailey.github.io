@@ -81,8 +81,14 @@ ll /dev/sd*
 
 And here was the output:
 {% capture fig_img %}
-![output]({{ base_path }}/images/sdb.png)
+![sdb information]({{ base_path }}/images/sdb.png)
 {% endcapture %}
+
+<figure>
+  {{ fig_img | markdownify | remove: "<p>" | remove: "</p>" }}
+  <figcaption>SDB's output.</figcaption>
+</figure>
+
 I noted it was /dev/sdb, so from there, I ran the following:
 
 {% highlight bash %}
@@ -215,6 +221,11 @@ The datacenter is a top level organizational structure.  Consider it a top-level
 ![the administration panel]({{ base_path }}/images/administration-panel.png)
 {% endcapture %}
 
+<figure>
+  {{ fig_img | markdownify | remove: "<p>" | remove: "</p>" }}
+  <figcaption>The administration panel.</figcaption>
+</figure>
+
 Name your datacenter, and select storage type: shared.  Click ok, and you'll be taken to a new popup with a list of tasks to complete the configuration of your new datacenter.  The first step is to configure clusters.
 
 ### Configure Clusters
@@ -224,6 +235,11 @@ Once you've gotten the datacenter configured, you'll want to configure your clus
 {% capture fig_img %}
 ![the new cluster menu]({{ base_path }}/images/create-cluster.png)
 {% endcapture %}
+
+<figure>
+  {{ fig_img | markdownify | remove: "<p>" | remove: "</p>" }}
+  <figcaption>The 'New Cluster' menu.</figcaption>
+</figure>
 
 Enter in the appropriate information on the cluster, and click ok.  Next, let's configure the host.
 
@@ -235,6 +251,11 @@ The host requires a little bit more configuration:
 ![the new host menu]({{ base_path }}/images/new-host.png)
 {% endcapture %}
 
+<figure>
+  {{ fig_img | markdownify | remove: "<p>" | remove: "</p>" }}
+  <figcaption>The 'New Host' menu.</figcaption>
+</figure>
+
 enter the host name, IP, and root password.  Click advanced params and uncheck 'Automatically configure host firewall'.  This will block port 80, thus disconnecting you from the server.  Click ok, and continue to storage.
 
 ### Configuring Storage
@@ -245,6 +266,11 @@ This is where things get a bit tricky.  We're going to create 3 new domains with
 ![attaching the ISO_DOMAIN]({{ base_path }}/images/iso-domain.png)
 {% endcapture %}
 
+<figure>
+  {{ fig_img | markdownify | remove: "<p>" | remove: "</p>" }}
+  <figcaption>How to attach ISO_DOMAIN.</figcaption>
+</figure>
+
 Select 'ISO_DOMAIN' and attach the domain to your datacenter.
 
 ### Configure Networks
@@ -254,6 +280,11 @@ Click on 'networks' on the left pane, and click 'new'.  Name your network.  If y
 {% capture fig_img %}
 ![creating a new network]({{ base_path }}/images/new-network.png)
 {% endcapture %}
+
+<figure>
+  {{ fig_img | markdownify | remove: "<p>" | remove: "</p>" }}
+  <figcaption>Create a new network.</figcaption>
+</figure>
 
 ### Upload ISOs
 
@@ -270,6 +301,11 @@ From there, you'll be able to create a brand new VM, and configure it to your li
 {% capture fig_img %}
 ![new vm]({{ base_path }}/images/new-vm.png)
 {% endcapture %}
+
+<figure>
+  {{ fig_img | markdownify | remove: "<p>" | remove: "</p>" }}
+  <figcaption>The 'New VM' menu.</figcaption>
+</figure>
 
 There's a score of options that you can play with to configure your VM, but for now we'll just focus on getting a demo machine up and running.  Select RHEL as your operating system, and select 'tiny' as your instance type.  Optimize for server, and enter the name of the machine.
 
