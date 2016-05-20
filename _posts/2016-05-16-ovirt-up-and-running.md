@@ -41,7 +41,7 @@ The Server that I'm deploying Ovirt to has the following specs:
 
 Minimum requirements are far below this, but if you're ever interested in deploying a hypervisor environment in your own home -- and if you're even remotely technically skilled I implore that you get one.
 
-check out ebay for super duper cheap rack servers around the $200 mark.  You're guaranteed to find a server with 2 quad core CPUs and at least 16GB of RAM.
+**Note:** check out ebay for super duper cheap rack servers around the $200 mark.  You're guaranteed to find a server with 2 quad core CPUs and at least 16GB of RAM.
 {: .notice--success}
 
 ## Node Configuration
@@ -51,7 +51,7 @@ The first step to deploying any application is the configuration of the server, 
 2. (optional) configure SSH for your new server to secure it.
 3. Run {% highlight bash %}yum -y update{% endhighlight %} on your machine to update it, then run {% highlight bash %}reboot{% endhighlight %}
 4. Partition any drives and format the partitions for use, if needed.
-5. Run {% highlight bash %}yum install nfs-utils nfs-utils-lib -y{% endhighlight %} to install NFS.
+5. Run `yum install nfs-utils nfs-utils-lib -y` to install NFS.
 
 ### Install OS
 
@@ -60,6 +60,7 @@ In my installation, I went with Centos 7 since it's a stable community version o
 ### Secure with SSH
 
 In order to secure with SSH, I decided to run the following commands on my workstation to get keys created:
+
 **Note:** If you're not using a Linux console like Msysgit or Cygwin, you'll want to have access to the linux tools in your shell path.  If you're using git on your workstation, you can set a path to your `c:\program files\git\bin\` so you can have access to ssh tools.
 {: .notice--info}
 {% highlight bash %}
@@ -208,8 +209,10 @@ The next step is to make your first initial configurations so that you can start
 
 The datacenter is a top level organizational structure.  Consider it a top-level folder to organize your hosts.  By default, the 'default' datacenter is created for you.  To create a new datacenter, click 'Data Centers' in the left hand pane, and click 'New' in the right:
 
+{% include base_path %}
+
 {% capture fig_img %}
-![output]({{ base_path }}/images/administration-panel.png)
+![the administration panel]({{ base_path }}/images/administration-panel.png)
 {% endcapture %}
 
 Name your datacenter, and select storage type: shared.  Click ok, and you'll be taken to a new popup with a list of tasks to complete the configuration of your new datacenter.  The first step is to configure clusters.
@@ -219,7 +222,7 @@ Name your datacenter, and select storage type: shared.  Click ok, and you'll be 
 Once you've gotten the datacenter configured, you'll want to configure your cluster, which is a collection of Ovirt Hosts (the physical servers that run Ovirt).  Since this is only being done on one machine for now, this part's easy.  By default, the 'default' data center has a cluster called 'default'.  Let's create a cluster for our new datacenter:
 
 {% capture fig_img %}
-![output]({{ base_path }}/images/create-cluster.png)
+![the new cluster menu]({{ base_path }}/images/create-cluster.png)
 {% endcapture %}
 
 Enter in the appropriate information on the cluster, and click ok.  Next, let's configure the host.
@@ -229,7 +232,7 @@ Enter in the appropriate information on the cluster, and click ok.  Next, let's 
 The host requires a little bit more configuration:
 
 {% capture fig_img %}
-![output]({{ base_path }}/images/new-host.png)
+![the new host menu]({{ base_path }}/images/new-host.png)
 {% endcapture %}
 
 enter the host name, IP, and root password.  Click advanced params and uncheck 'Automatically configure host firewall'.  This will block port 80, thus disconnecting you from the server.  Click ok, and continue to storage.
@@ -239,7 +242,7 @@ enter the host name, IP, and root password.  Click advanced params and uncheck '
 This is where things get a bit tricky.  We're going to create 3 new domains with function values 'data' and 'export'.  Enter their names, and type the export path, which is going to be the <SERVERADDRESS>:/PATH/TO/SHARE and click ok.  Next, let's import the iso domain that we created during the engine installation.  Under the data center page, look at the bottom right hand pane and select the 'storage' tab.  Click 'attach iso'
 
 {% capture fig_img %}
-![output]({{ base_path }}/images/iso-domain.png)
+![attaching the ISO_DOMAIN]({{ base_path }}/images/iso-domain.png)
 {% endcapture %}
 
 Select 'ISO_DOMAIN' and attach the domain to your datacenter.
@@ -249,7 +252,7 @@ Select 'ISO_DOMAIN' and attach the domain to your datacenter.
 Click on 'networks' on the left pane, and click 'new'.  Name your network.  If you're going to add the network to a VLAN, you'll probably want to have that VLAN number in the name of the network.  If not, don't worry, vlan tagging is optional.
 
 {% capture fig_img %}
-![output]({{ base_path }}/images/new-network.png)
+![creating a new network]({{ base_path }}/images/new-network.png)
 {% endcapture %}
 
 ### Upload ISOs
@@ -265,7 +268,7 @@ engine-iso-uploader upload -i ISO_DOMAIN rhel-server-7.2-x86_64-dvd.iso
 From there, you'll be able to create a brand new VM, and configure it to your liking.  First, click on 'VMs' in the left hand pane, and click 'new' in the right hand pane.
 
 {% capture fig_img %}
-![output]({{ base_path }}/images/new-vm.png)
+![new vm]({{ base_path }}/images/new-vm.png)
 {% endcapture %}
 
 There's a score of options that you can play with to configure your VM, but for now we'll just focus on getting a demo machine up and running.  Select RHEL as your operating system, and select 'tiny' as your instance type.  Optimize for server, and enter the name of the machine.
