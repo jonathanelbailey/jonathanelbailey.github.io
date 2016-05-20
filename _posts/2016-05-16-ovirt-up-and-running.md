@@ -15,6 +15,8 @@ date: 2016-05-16T21:41:40-05:00
 
 {% include toc %}
 
+{% include base_path %}
+
 ## Introduction
 
 This guide explains how to install [Ovirt](http://www.ovirt.org/), a virtualization technology from Redhat that's the unstable release of RHEV.
@@ -49,7 +51,7 @@ Minimum requirements are far below this, but if you're ever interested in deploy
 The first step to deploying any application is the configuration of the server, otherwise known as 'node config'.  The following steps must be completed before we start the deployment of Ovirt:
 1. Centos 7/Fedora/RHEL 7 must first be installed.
 2. (optional) configure SSH for your new server to secure it.
-3. Run {% highlight bash %}yum -y update{% endhighlight %} on your machine to update it, then run {% highlight bash %}reboot{% endhighlight %}
+3. Run `yum -y update` on your machine to update it, then run `reboot`
 4. Partition any drives and format the partitions for use, if needed.
 5. Run `yum install nfs-utils nfs-utils-lib -y` to install NFS.
 
@@ -208,8 +210,6 @@ The next step is to make your first initial configurations so that you can start
 ### Create Your First Datacenter
 
 The datacenter is a top level organizational structure.  Consider it a top-level folder to organize your hosts.  By default, the 'default' datacenter is created for you.  To create a new datacenter, click 'Data Centers' in the left hand pane, and click 'New' in the right:
-
-{% include base_path %}
 
 {% capture fig_img %}
 ![the administration panel]({{ base_path }}/images/administration-panel.png)
