@@ -239,7 +239,7 @@ enter the host name, IP, and root password.  Click advanced params and uncheck '
 
 ### Configuring Storage
 
-This is where things get a bit tricky.  We're going to create 3 new domains with function values 'data' and 'export'.  Enter their names, and type the export path, which is going to be the <SERVERADDRESS>:/PATH/TO/SHARE and click ok.  Next, let's import the iso domain that we created during the engine installation.  Under the data center page, look at the bottom right hand pane and select the 'storage' tab.  Click 'attach iso'
+This is where things get a bit tricky.  We're going to create 3 new domains with function values 'data' and 'export'.  Enter their names, and type the export path, which is going to be the `<SERVERADDRESS>:/PATH/TO/SHARE` and click ok.  Next, let's import the iso domain that we created during the engine installation.  Under the data center page, look at the bottom right hand pane and select the 'storage' tab.  Click 'attach iso'
 
 {% capture fig_img %}
 ![attaching the ISO_DOMAIN]({{ base_path }}/images/iso-domain.png)
