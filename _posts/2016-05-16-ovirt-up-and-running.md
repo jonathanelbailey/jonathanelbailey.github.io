@@ -2,7 +2,7 @@
 title: "Ovirt Up and Running"
 modified:
 categories:
-excerpt: 'Learn how to deploy Red Hat\'s open-source virtualization software, based on RHEV.'
+excerpt: "Learn how to deploy Red Hat's open-source virtualization software, based on RHEV."
 tags:
   - homelab
   - centos
