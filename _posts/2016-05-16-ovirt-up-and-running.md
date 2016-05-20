@@ -17,11 +17,11 @@ date: 2016-05-16T21:41:40-05:00
 
 ## Introduction
 
-This guide explains how to install Ovirt, a virtualization technology from Redhat that's the unstable release of RHEV.
+This guide explains how to install [Ovirt](http://www.ovirt.org/), a virtualization technology from Redhat that's the unstable release of RHEV.
 
 ### Why Ovirt?
 
-I aim to use RHEV to replace my Hyper-V environment.  It's free, more feature-rich out of the box, and is more pleasant to use than VMWare, in my opinion.  While Hyper-V is nice, I am jumping to Ovirt mainly because it's what I use at work.
+I aim to use Ovirt to replace my Hyper-V environment.  It's free, more feature-rich out of the box, and is more pleasant to use than VMWare, in my opinion.  While Hyper-V is nice, I am jumping to Ovirt mainly because it's what I use at work.
 
 ### Hardware Requirements
 
@@ -274,3 +274,5 @@ From there, you'll be able to create a brand new VM, and configure it to your li
 There's a score of options that you can play with to configure your VM, but for now we'll just focus on getting a demo machine up and running.  Select RHEL as your operating system, and select 'tiny' as your instance type.  Optimize for server, and enter the name of the machine.
 
 In instances images, click 'create', and create a small 8GB disk and attach it to the machine.  Next, select your network for the VM's NIC to connect to.  Under 'boot options' tab, add a cd drive, and attach the ISO to the drive.  Click okay, and start the machine. Voila!  You've created your first VM!
+
+For more information, go to [Ovirt's documentation](http://www.ovirt.org/documentation/) to further explore its functionality.
