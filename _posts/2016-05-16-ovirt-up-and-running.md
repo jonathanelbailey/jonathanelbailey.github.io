@@ -8,10 +8,11 @@ tags:
   - centos
   - virtualization
 header:
-  overlay_image: 20151010_113344.jpg
+  overlay_image: the-black-crowes-overlay.jpg
   caption: "Photo credit: Jonathan Bailey"
-date: 2016-05-16T21:41:40-05:00
+date: 2016-05-19T21:41:40-05:00
 ---
+
 {% include toc %}
 
 ## Introduction

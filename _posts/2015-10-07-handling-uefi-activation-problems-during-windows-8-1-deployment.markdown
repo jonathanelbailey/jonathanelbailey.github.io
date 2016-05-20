@@ -104,7 +104,7 @@ $HexData.split(" ") | FOREACH {[BYTE]([CONVERT]::toint16($_,16))}
 And then we can convert that to ASCII and pop it into a variable:
 
 {% highlight powershell %}
-$HexData.split(" ") | FOREACH {[CHAR][BYTE]([CONVERT]::toint16($_,16))} | Set-Variable -name prodkey -PassThru
+$HexData.split(" ") | FOREACH {[CHAR][BYTE]([CONVERT]::toint16($\_,16))} | Set-Variable -name prodkey -PassThru
 {% endhighlight %}
 
 And finally, we join the array back to a single string, and clean up any unprintable characters:
