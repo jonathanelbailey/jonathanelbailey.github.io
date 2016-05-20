@@ -64,7 +64,7 @@ Our first task is to see what the output is for oa3tool:
 
 It's straight text.  So the first thing we'll have to do is convert this into something meaningful.
 
-#### Running the Tool
+### Running the Tool
 
 What we'll want to do is ensure that PowerShell properly runs the command, and we also want to ensure that the output is saved properly:
 
@@ -73,7 +73,7 @@ Start-Process -FilePath $OA3ToolPath -ArgumentList '/validate' -RedirectStandard
 $HexData = Get-Content .\validate.txt
 {% endhighlight %}
 
-#### Getting rid of the useless stuff
+### Getting rid of the useless stuff
 
 Next, we're only after the hex values under the title `The ACPI MSDM table in hex:`.  So we'll first need to get rid of everything else:
 
@@ -87,7 +87,7 @@ $HexData = $HexData.trimend(' ')
 This first throws away everything after the first 33 lines of text, then throws everything before the last 4 of those lines of text.
 Next, we replace all double spaces with single spaces, and trim any whitespace that's left.
 
-#### Converting from Hex to ASCII
+### Converting from Hex to ASCII
 
 Once we have the hex values isolated, we now need to split them into an array:
 
@@ -104,7 +104,7 @@ $HexData.split(" ") | FOREACH {[BYTE]([CONVERT]::toint16($_,16))}
 And then we can convert that to ASCII and pop it into a variable:
 
 {% highlight powershell %}
-$HexData.split(" ") | FOREACH {[CHAR][BYTE]([CONVERT]::toint16($_,16))} | Set-Variable -name prodkey -PassThru
+$HexData.split(" ") | FOREACH {[CHAR][BYTE]([CONVERT]::toint16($\_,16))} | Set-Variable -name prodkey -PassThru
 {% endhighlight %}
 
 And finally, we join the array back to a single string, and clean up any unprintable characters:
@@ -114,7 +114,7 @@ $prodkey = $prodkey -join ''
 $prodkey = $prodkey -replace "[^ -x7e]",""
 {% endhighlight %}
 
-#### Sending the key to slmgr.vbs
+### Sending the key to slmgr.vbs
 
 Our final step is to send the slmgr script to activate.  We'll want to run this in batch mode so we don't get any
 annoying message windows, and cleanup our text file:

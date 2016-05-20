@@ -106,7 +106,7 @@ The first part of the process is the creation of the configuration file.  I use 
 	"@
 {% endhighlight %}
 
-#### Variables
+### Variables
 
 In the here-string, you'll see that there's a few variables.  These are the only parts of the configuration file
 that vary from installation to installation.  Let's go ahead and populate it now:
@@ -126,7 +126,7 @@ Next, let's create the configuration file:
 set-content -Value $Source -Path 'configurationfile.ini'
 {% endhighlight %}
 
- #### Checking for Chocolatey
+### Checking for Chocolatey
 
  The first thing I want to do is ensure that Chocolatey is in fact installed, and if not, install it:
 
@@ -138,7 +138,7 @@ set-content -Value $Source -Path 'configurationfile.ini'
 	}
  {% endhighlight %}
 
-#### Chocolatey Parameters
+### Chocolatey Parameters
 
 The next step is to run Chocolatey.  There's a great feature about Chocolatey that allows you to override the default parameters
 that exist in the package install script.  Since we have a configuration file, all we have to do is tell the install package to
@@ -148,7 +148,7 @@ use the file:
 	choco install mssqlserver2012express --params='/ConfigurationFile="ConfigurationFile.ini"' -y
 {% endhighlight %}
 
-#### Cleanup
+### Cleanup
 
 Once the install is finished, the last thing to do is remove the configuration file:
 
