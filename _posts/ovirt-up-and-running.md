@@ -10,7 +10,7 @@ tags:
 header:
   overlay_image: the-black-crowes-overlay.jpg
   caption: "Photo credit: Jonathan Bailey"
-date: 2016-05-19T21:41:40-05:00
+date: 2016-05-19T17:41:40-05:00
 ---
 
 {% include toc %}
