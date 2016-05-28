@@ -9,7 +9,7 @@ tags:
   - ruby
   - development
 header:
-  overlay_image: 20151010_113344.jpg
+  overlay_image: 20160519_083311.jpg
   caption: "Photo credit: Jonathan Bailey"
 date: 2016-05-16T21:53:40-05:00
 ---
@@ -69,6 +69,7 @@ bundle install
 {% endhighlight %}
 
 `bundle install` should begin to install all dependencies related to the jekyll template we're using.
+
 **Note:** because the Minimal Mistakes theme is a project, Michael Rose uses a branch called 'gh-pages' as the branch that will run his project page.  In this guide, we'll be creating a user page.  For more information, check out [Github's article](https://help.github.com/articles/user-organization-and-project-pages/) explaining more on gitpages.
 {: .notice--info}
 
