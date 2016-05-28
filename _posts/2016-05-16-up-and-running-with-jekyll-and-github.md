@@ -95,7 +95,7 @@ where `jekylldev` is the name of my development machine.  Then we can open up `h
 
 Front matter in Jekyll allows you to minimize the amount of code you have to write and rewrite when creating your pages.  Your pages are defined by templates, which is managed with the `_config.yml` file.  In it, you'll be able to enter site wide config settings, along with author based information.  It also allows you to create template based configurations for whatever type of page you choose.  In our example, we're going to focus on the 'post'.
 
-{% highligh yaml %}
+{% highlight yaml %}
 \# Defaults
 defaults:
   # \_posts
