@@ -117,7 +117,7 @@ Then, create your folders.  I created mine in my mounted partition:
 
 {% highlight bash %}
 mkdir /mnt/storage/iso /mnt/storage/data /mnt/storage/import_export         # creates the directories
-chmod /mnt/storage/iso /mnt/storage/data /mnt/storage/import_export         # sets the proper permissions on the dirs
+chmod 0755 /mnt/storage/iso /mnt/storage/data /mnt/storage/import_export         # sets the proper permissions on the dirs
 chown 36:36 /mnt/storage/data /mnt/storage/iso /mnt/storage/import_export   # sets ownership of the folders to the proper gid.
 {% endhighlight %}
 

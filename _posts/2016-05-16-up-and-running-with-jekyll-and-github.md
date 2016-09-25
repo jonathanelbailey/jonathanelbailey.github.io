@@ -27,17 +27,26 @@ This guide explains how to work with Jekyll.
 
 ## Building Your Dev Environment
 
-First, we'll need to enable the EPEL repo from Fedora by running `yum install epel-release` with root.  Next, we'll need to install the ruby development environment:
+First, we'll need to enable the EPEL repo from Fedora by running `yum install epel-release`.  Be sure you're not running as root, because it can cause problems later.  Next, we'll need to install the ruby development environment:
 
 {% highlight bash %}
-yum install ruby ruby-devel nodejs httpd git
+yum install vim ruby ruby-devel nodejs httpd git gcc bzip2 openssl-devel readline-devel zlib-devel
 {% endhighlight %}
 
 and finall, run `gem install jekyll` to install the libraries.
 
 ### Configuring Ruby
 
-since you'll likely want to wrangle your ruby environment, it's recommended to use 'rbenv' to handle your ruby dependencies if you're running multiple versions on your workstation.  run `gem install rbenv` to install the libraries, and create a directory that you're going to use specifically for jekyll site work.  In this example, we'll create the ~/sites folder:
+since you'll likely want to wrangle your ruby environment, it's recommended to use 'rbenv' to handle your ruby dependencies if you're running multiple versions on your workstation.  run the following commands:
+
+{% highlight bash %}
+cd ~/.rbenv && src/configure && make -C src
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+~/.rbenv/bin/rbenv init
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+{% endhighlight %}
+
+ to install the libraries, and create a directory that you're going to use specifically for jekyll site work.  In this example, we'll create the ~/sites folder:
 
 {% highlight bash %}
 mkdir ~/sites
@@ -62,7 +71,7 @@ Next, you'll need to go to your new repo, and rename it to `YOURUSERNAME.github.
 
 {% highlight bash %}
 cd ~/sites
-git clone https://jonathanelbailey/jonathanelbailey.github.io.git
+git clone https://github.com/jonathanelbailey/jonathanelbailey.github.io.git
 cd jonathanelbailey.github.io
 git checkout gh-pages
 bundle install
