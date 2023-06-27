@@ -18,6 +18,8 @@ jobs:
         with:
           key: ${{ github.ref }}
           path: .cache
-      - run: pip install --upgrade git+https://{{secrets.GITHUB_TOKEN}}@github.com/squidfunk/mkdocs-material-insiders.git
+      - env: 
+          MKPAT: ${{ secrets.MKPAT }}
+        run: pip install --upgrade git+https://$MKPAT@github.com/squidfunk/mkdocs-material-insiders.git
       - run: pip install pillow cairosvg
       - run: mkdocs gh-deploy --force
