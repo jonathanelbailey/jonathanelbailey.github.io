@@ -22,7 +22,7 @@ cd homelab.catalog/istio-k8s-gateway-api/
 
 This `Application` manifest will conifigure ArgoCD to deploy the Gateway API CRDs:
 
-```yaml
+```yaml title="applications/k8s-gateway-api/k8s-gateway-crds.yaml" linenums="1"
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -72,7 +72,7 @@ kubectl apply -f applications/istiod/istiod-1-16-5.yaml
 
 Bookinfo's `Application` manifest has some interesting configurations to note:
 
-```yaml
+```yaml title="applications/bookinfo/bookinfo.yaml" linenums="1" hl_lines="12-26 29-31"
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -127,7 +127,7 @@ kubectl apply -f applications/bookinfo/bookinfo.yaml
 
 Access `https://bookinfo.internal.magiccityit.com/productpage` from your browser.  A 404 response is returned.  However, when attempting to access `http://bookinfo.internal.magiccityit.com/productpage`, Product Page appears, albeit on an insecure connection.  Even though the `Gateway` has port 443 configured, and includes the correct TLS configuration, Istio cannot natively access secrets from another namespace.  To remedy this, we will add a `ReferenceGrant` to a namespace that does have the required certificate:
 
-```yaml
+```yaml title="services/bookinfo/referencegrant.yaml" linenums="1"
 apiVersion: gateway.networking.k8s.io/v1beta1
 kind: ReferenceGrant
 metadata:
@@ -144,3 +144,15 @@ spec:
 ```
 
 Once we add this manifest to `services/bookinfo/referencegrant.yaml` and push to the project's remote repository, ArgoCD will automatically pick up the change.  If we try again, we will receive a sucessful response.
+
+## Add a Second Gateway
+
+Now that we have Product Page accessible, let's deploy a second microservice using Jaeger's Hot Rod demo app:
+
+```shell
+kubectl apply -f applications/hotrod/hotrod.yaml
+```
+
+ArgoCD will deploy the Hot Rod app as well as its own Istio gateway.  Validate this by accessing `https://hotrod.internal.magiccityit.com`:
+
+![](images/hotrod-success.png)

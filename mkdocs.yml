@@ -1,4 +1,4 @@
-site_name: My Docs
+site_name: Magic City DevOps
 theme:
   name: material
   features:
@@ -26,8 +26,20 @@ theme:
       primary: indigo
       accent: lime
 
+nav:
+  - Blog:
+    - blog/index.md
+  - Homelab:
+    - Ubuntu Server Homelab Configuration Guide: homelab/ubuntu-server-homelab-configuration-guide.md
+    - Openstack Configuration Guide: homelab/openstack-configuration-guide.md
+    - GitOps with istio and ArgoCD: homelab/gitops-with-istio-and-argocd.md
+    - Kubernetes Gateway API with Istio: homelab/k8s-gateway-api-with-istio.md
+
+
 plugins:
   - social
+  - glightbox
+  - blog
 
 extra:
   social:
@@ -46,7 +58,11 @@ markdown_extensions:
       generic: true
   - footnotes
   - pymdownx.details
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.mark
   - attr_list
   - pymdownx.emoji:
