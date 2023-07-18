@@ -2,7 +2,7 @@
 
 ## Create Pi-Hole Secret
 
-```shel
+```shell
 kubectl create ns external-dns
 create secret generic pihole-secret -n external-dns --from-literal=EXTERNAL_DNS_PIHOLE_PASSWORD=<PASSWORD>
 ```

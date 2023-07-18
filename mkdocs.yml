@@ -11,6 +11,7 @@ theme:
     - content.tabs.link
     - content.code.annotation
     - content.code.copy
+    - content.code.annotate
   language: en
   palette:
     - scheme: default
@@ -30,10 +31,12 @@ nav:
   - Blog:
     - blog/index.md
   - Homelab:
-    - Ubuntu Server Homelab Configuration Guide: homelab/ubuntu-server-homelab-configuration-guide.md
-    - Openstack Configuration Guide: homelab/openstack-configuration-guide.md
-    - GitOps with istio and ArgoCD: homelab/gitops-with-istio-and-argocd.md
-    - Kubernetes Gateway API with Istio: homelab/k8s-gateway-api-with-istio.md
+    - Reference:
+      - Ubuntu Server Homelab Configuration Guide: homelab/reference/ubuntu-server-homelab-configuration-guide.md
+      - Openstack Configuration Guide: homelab/reference/openstack-configuration-guide.md
+  - Guides:
+    - GitOps with istio and ArgoCD: guides/gitops-with-istio-and-argocd.md
+    - Kubernetes Gateway API with Istio: guides/k8s-gateway-api-with-istio.md
 
 
 plugins:
