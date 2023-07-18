@@ -9,24 +9,28 @@
       
       
       
+        <link rel="prev" href="../../archive/2023/">
+      
+      
+        <link rel="next" href="../argocd/">
       
       
         
       
       
-      <link rel="icon" href="../../../images/dumpster-fire.svg">
+      <link rel="icon" href="../../images/dumpster-fire.svg">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17+insiders-4.36.1">
     
     
       
-        <title>Proxmox VE Configuration Guide - Magic City DevOps</title>
+        <title>Ambient Mesh - Magic City DevOps</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.cac7c1ad.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.cac7c1ad.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ecc776e4.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ecc776e4.min.css">
       
       
 
@@ -42,13 +46,13 @@
       
     
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
-   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
         html.glightbox-open { overflow: initial; height: 100%; }
         .gslide-title { margin-top: 0px; user-select: text; }
         .gslide-desc { color: #666; user-select: text; }
@@ -59,7 +63,7 @@
             body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
-            </style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+            </style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -78,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#proxmox-ve-configuration-guide" class="md-skip">
+        <a href="#ambient-mesh" class="md-skip">
           Skip to content
         </a>
       
@@ -92,9 +96,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Magic City DevOps" class="md-header__button md-logo" aria-label="Magic City DevOps" data-md-component="logo">
+    <a href="../.." title="Magic City DevOps" class="md-header__button md-logo" aria-label="Magic City DevOps" data-md-component="logo">
       
-  <img src="../../../images/dumpster-fire.svg" alt="logo">
+  <img src="../../images/dumpster-fire.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -110,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Proxmox VE Configuration Guide
+              Ambient Mesh
             
           </span>
         </div>
@@ -166,11 +170,13 @@
         
   
   
+    
+  
   
     
     
       <li class="md-tabs__item">
-        <a href="../../.." class="md-tabs__link">
+        <a href="../.." class="md-tabs__link md-tabs__link--active">
           
   
   Blog
@@ -194,7 +200,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../ubuntu-server-homelab-configuration-guide/" class="md-tabs__link">
+        <a href="../../homelab/reference/ubuntu-server-homelab-configuration-guide/" class="md-tabs__link">
           
   
   Homelab
@@ -232,9 +238,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Magic City DevOps" class="md-nav__button md-logo" aria-label="Magic City DevOps" data-md-component="logo">
+    <a href="../.." title="Magic City DevOps" class="md-nav__button md-logo" aria-label="Magic City DevOps" data-md-component="logo">
       
-  <img src="../../../images/dumpster-fire.svg" alt="logo">
+  <img src="../../images/dumpster-fire.svg" alt="logo">
 
     </a>
     Magic City DevOps
@@ -246,17 +252,19 @@
       
   
   
+    
+  
   
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
         
           <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
             
@@ -275,7 +283,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_1">
             <span class="md-nav__icon md-icon"></span>
             
@@ -292,7 +300,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -364,7 +372,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../archive/2023/" class="md-nav__link">
+      <a href="../../archive/2023/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -396,19 +404,21 @@
                 
   
   
+    
+  
   
     
     
     
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_3" checked>
         
           <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
             
@@ -427,7 +437,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_1_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -442,9 +452,35 @@
                 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../../category/ambient-mesh/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    Ambient Mesh
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -459,6 +495,37 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exploring-canary-upgrades-with-istio-ambient-mesh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exploring Canary Upgrades with Istio Ambient Mesh
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -470,7 +537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../category/argocd/" class="md-nav__link">
+      <a href="../argocd/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -496,7 +563,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../category/blue-green/" class="md-nav__link">
+      <a href="../blue-green/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -522,7 +589,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../category/canary/" class="md-nav__link">
+      <a href="../canary/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -548,7 +615,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../category/cni/" class="md-nav__link">
+      <a href="../cni/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -574,7 +641,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../category/devops/" class="md-nav__link">
+      <a href="../devops/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -600,7 +667,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../category/gateway-api/" class="md-nav__link">
+      <a href="../gateway-api/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -626,7 +693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../category/gitops/" class="md-nav__link">
+      <a href="../gitops/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -652,7 +719,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../category/istio/" class="md-nav__link">
+      <a href="../istio/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -678,7 +745,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../category/kubernetes/" class="md-nav__link">
+      <a href="../kubernetes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -704,7 +771,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../category/service-mesh/" class="md-nav__link">
+      <a href="../service-mesh/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -730,7 +797,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../category/ztunnel/" class="md-nav__link">
+      <a href="../ztunnel/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -861,7 +928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ubuntu-server-homelab-configuration-guide/" class="md-nav__link">
+      <a href="../../homelab/reference/ubuntu-server-homelab-configuration-guide/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -887,7 +954,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../openstack-configuration-guide/" class="md-nav__link">
+      <a href="../../homelab/reference/openstack-configuration-guide/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -931,54 +998,70 @@
             
           
           
-            <div class="md-content" data-md-component="content">
-              
-              <article class="md-content__inner md-typeset">
-                
-                  
-
-
-<h1 id="proxmox-ve-configuration-guide">Proxmox VE Configuration Guide</h1>
-<h2 id="install">Install</h2>
-<h2 id="resize-disk">Resize Disk</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>lvremove<span class="w"> </span>/dev/pve/data
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>lvresize<span class="w"> </span>-l<span class="w"> </span>+100%FREE<span class="w"> </span>/dev/pve/root
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>resize2fs<span class="w"> </span>/dev/mapper/pve-root
-</code></pre></div>
-<p>Then update the disk to support all disk objects (vmdisk, snippets, etc)</p>
-<h2 id="create-cloud-init-template">Create Cloud-init Template</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>wget<span class="w"> </span>https://cloud-images.ubuntu.com/releases/releases/jammy/release/ubuntu-22.04-server-cloudimg-amd64-disk-kvm.img
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>qm<span class="w"> </span>create<span class="w"> </span><span class="m">9000</span><span class="w"> </span>--memory<span class="w"> </span><span class="m">2048</span><span class="w"> </span>--net0<span class="w"> </span>virtio,bridge<span class="o">=</span>vmbr0<span class="w"> </span>--scsihw<span class="w"> </span>virtio-scsi-pci
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>qm<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">9000</span><span class="w"> </span>--scsi0<span class="w"> </span>local:0,import-from<span class="o">=</span>/root/ubuntu-22.04-server-cloudimg-amd64-disk-kvm.img
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>qm<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">9000</span><span class="w"> </span>--ide2<span class="w"> </span>local:cloudinit
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>qm<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">9000</span><span class="w"> </span>--boot<span class="w"> </span><span class="nv">order</span><span class="o">=</span>scsi0
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>qm<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">9000</span><span class="w"> </span>--serial0<span class="w"> </span>socket<span class="w"> </span>--vga<span class="w"> </span>serial0
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>qm<span class="w"> </span>template<span class="w"> </span><span class="m">9000</span>
-</code></pre></div>
-<p>Also update the following:</p>
-<ol>
-<li>Memory: 8GB</li>
-<li>CPU: 4 cores</li>
-<li>User Name: magicadmin</li>
-<li>Set password</li>
-<li>Add ssh key</li>
-<li>Set network to DHCP</li>
-</ol>
-<h2 id="to-clone-a-vm">To Clone a VM</h2>
-<ol>
-<li>Resize disk</li>
-<li>then start VM</li>
-</ol>
-
-
-
-
-
-
-                
-              </article>
-            </div>
+  <div class="md-content" data-md-component="content">
+    <div class="md-content__inner">
+      <header class="md-typeset">
+        <h1 id="ambient-mesh">Ambient Mesh</h1>
+      </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+      <nav class="md-post__authors md-typeset">
+        
+          <span class="md-author">
+            <img src="https://avatars.githubusercontent.com/u/10998000" alt="Jonathan Bailey">
+          </span>
+        
+      </nav>
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2023-06-27 00:00:00">June 27, 2023</time></li>
+        
+          <li class="md-meta__item">
+            in
+            
+              <a href="../istio/" class="md-meta__link">Istio</a>, 
+              <a href="./" class="md-meta__link">Ambient Mesh</a>, 
+              <a href="../canary/" class="md-meta__link">Canary</a>, 
+              <a href="../blue-green/" class="md-meta__link">Blue Green</a>, 
+              <a href="../cni/" class="md-meta__link">CNI</a></li>
+        
+        
           
+          <li class="md-meta__item">
+            
+              9 min read
+            
+          </li>
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="exploring-canary-upgrades-with-istio-ambient-mesh"><a class="toclink" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/">Exploring Canary Upgrades with Istio Ambient Mesh</a></h2>
+<p>Ambient Mesh leverages eBPF to reduce resource usage of Istio's data plane components.  It eliminates the need for sidecar proxies because eBPF leverages the kernel network layer of worker nodes for mesh traffic management.  The goal of this guide is to answer the following:</p>
+<ol>
+<li>What are the core components of Ambient Mesh?</li>
+<li>Which components are scoped to the kernel network layer</li>
+<li>Which components are scoped to the Kubernetes network layer?</li>
+<li>How does a canary upgrade of the Istio control plane work with Ambient Mesh?</li>
+</ol>
+
+    <nav class="md-post__action">
+      <a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/">
+        Continue reading
+      </a>
+    </nav>
+  </div>
+</article>
+      
+    </div>
+  </div>
+
           
   <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
 
@@ -1045,10 +1128,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.6c7302c4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.6c7302c4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.7001d404.min.js"></script>
+      <script src="../../assets/javascripts/bundle.7001d404.min.js"></script>
       
     
   <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
