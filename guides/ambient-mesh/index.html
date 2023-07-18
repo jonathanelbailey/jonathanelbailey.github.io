@@ -14,19 +14,19 @@
         
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17+insiders-4.36.1">
     
     
       
-        <title>Magic City DevOps</title>
+        <title>Exploring Istio's Ambient Mesh - Magic City DevOps</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.cac7c1ad.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.cac7c1ad.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.ecc776e4.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ecc776e4.min.css">
       
       
 
@@ -42,13 +42,24 @@
       
     
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
-  </head>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+        html.glightbox-open { overflow: initial; height: 100%; }
+        .gslide-title { margin-top: 0px; user-select: text; }
+        .gslide-desc { color: #666; user-select: text; }
+        .gslide-image img { background: white; }
+        
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+            </style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -66,6 +77,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#exploring-istios-ambient-mesh" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -76,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="Magic City DevOps" class="md-header__button md-logo" aria-label="Magic City DevOps" data-md-component="logo">
+    <a href="../.." title="Magic City DevOps" class="md-header__button md-logo" aria-label="Magic City DevOps" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -95,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Exploring Istio's Ambient Mesh
             
           </span>
         </div>
@@ -155,7 +171,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/blog/" class="md-tabs__link">
+        <a href="../../blog/" class="md-tabs__link">
           
   
   Blog
@@ -179,7 +195,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/homelab/reference/ubuntu-server-homelab-configuration-guide/" class="md-tabs__link">
+        <a href="../../homelab/reference/ubuntu-server-homelab-configuration-guide/" class="md-tabs__link">
           
   
   Homelab
@@ -200,7 +216,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/guides/gitops-with-istio-and-argocd/" class="md-tabs__link">
+        <a href="../gitops-with-istio-and-argocd/" class="md-tabs__link">
           
   
   Guides
@@ -235,7 +251,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Magic City DevOps" class="md-nav__button md-logo" aria-label="Magic City DevOps" data-md-component="logo">
+    <a href="../.." title="Magic City DevOps" class="md-nav__button md-logo" aria-label="Magic City DevOps" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -296,7 +312,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/blog/" class="md-nav__link">
+      <a href="../../blog/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -419,7 +435,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/homelab/reference/ubuntu-server-homelab-configuration-guide/" class="md-nav__link">
+      <a href="../../homelab/reference/ubuntu-server-homelab-configuration-guide/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -445,7 +461,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/homelab/reference/openstack-configuration-guide/" class="md-nav__link">
+      <a href="../../homelab/reference/openstack-configuration-guide/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -530,7 +546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/guides/gitops-with-istio-and-argocd/" class="md-nav__link">
+      <a href="../gitops-with-istio-and-argocd/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -556,7 +572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/guides/k8s-gateway-api-with-istio/" class="md-nav__link">
+      <a href="../k8s-gateway-api-with-istio/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -596,8 +612,60 @@
               
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+<h1 id="exploring-istios-ambient-mesh">Exploring Istio's Ambient Mesh</h1>
+<h2 id="overview">Overview</h2>
+<h2 id="prerequisites">Prerequisites</h2>
+<ol>
+<li>kubectl</li>
+<li>istioctl</li>
+<li>kind</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ambient Mesh is incompatible with <a href="https://github.com/istio/istio/issues/40973">calico</a>.  <code>Kind</code> is the only supported method of evaluating ambient mesh for local testing.
+However, EKS is also supported fully.</p>
+</div>
+<h2 id="deployment">Deployment</h2>
+<p>These steps are based on the <a href="https://istio.io/latest/docs/ops/ambient/getting-started/">Istio Getting Started Guide</a>.</p>
+<ol>
+<li>Download the latest <a href="https://github.com/istio/istio/releases/download/1.18.0/istio-1.18.0-linux-amd64.tar.gz">Istio 1.18</a> release.</li>
+<li>Install <code>kind</code>:
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">[</span><span class="w"> </span><span class="k">$(</span>uname<span class="w"> </span>-m<span class="k">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>x86_64<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>curl<span class="w"> </span>-Lo<span class="w"> </span>./kind<span class="w"> </span>https://kind.sigs.k8s.io/dl/v0.20.0/kind-linux-amd64
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>chmod<span class="w"> </span>+x<span class="w"> </span>./kind
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>sudo<span class="w"> </span>mv<span class="w"> </span>./kind<span class="w"> </span>/usr/local/bin/kind
+</code></pre></div></li>
+<li>Deploy a cluster using <code>kind</code>:
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kind<span class="w"> </span>create<span class="w"> </span>cluster<span class="w"> </span>--config<span class="o">=</span>-<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="s">kind: Cluster</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="s">apiVersion: kind.x-k8s.io/v1alpha4</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="s">name: ambient</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="s">nodes:</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="s">- role: control-plane</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="s">- role: worker</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="s">- role: worker</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="s">EOF</span>
+</code></pre></div></li>
+<li>Install the Kubernetes Gateway CRDs:
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>crd<span class="w"> </span>gateways.gateway.networking.k8s.io<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="o">{</span><span class="w"> </span>kubectl<span class="w"> </span>kustomize<span class="w"> </span><span class="s2">&quot;github.com/kubernetes-sigs/gateway-api/config/crd/experimental?ref=v0.6.1&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>-<span class="p">;</span><span class="w"> </span><span class="o">}</span>
+</code></pre></div></li>
+<li>Install Ambient Mesh:
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>istioctl<span class="w"> </span>install<span class="w"> </span>--set<span class="w"> </span><span class="nv">profile</span><span class="o">=</span>ambient<span class="w"> </span>--skip-confirmation
+</code></pre></div></li>
+<li>Install bookinfo</li>
+</ol>
+<h2 id="managing-via-argocd">Managing Via ArgoCD</h2>
+<h2 id="canary-upgrades">Canary Upgrades</h2>
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -667,11 +735,11 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "/", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "content.code.annotate"], "search": "/assets/javascripts/workers/search.6c7302c4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.6c7302c4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.7001d404.min.js"></script>
+      <script src="../../assets/javascripts/bundle.7001d404.min.js"></script>
       
     
-  </body>
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
 </html>

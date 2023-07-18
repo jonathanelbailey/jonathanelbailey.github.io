@@ -14,19 +14,19 @@
         
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17+insiders-4.36.1">
     
     
       
-        <title>Magic City DevOps</title>
+        <title>Proxmox VE Configuration Guide - Magic City DevOps</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.cac7c1ad.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.cac7c1ad.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.ecc776e4.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ecc776e4.min.css">
       
       
 
@@ -42,13 +42,24 @@
       
     
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
-  </head>
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+        html.glightbox-open { overflow: initial; height: 100%; }
+        .gslide-title { margin-top: 0px; user-select: text; }
+        .gslide-desc { color: #666; user-select: text; }
+        .gslide-image img { background: white; }
+        
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+            </style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -66,6 +77,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#proxmox-ve-configuration-guide" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -76,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="Magic City DevOps" class="md-header__button md-logo" aria-label="Magic City DevOps" data-md-component="logo">
+    <a href="../../.." title="Magic City DevOps" class="md-header__button md-logo" aria-label="Magic City DevOps" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -95,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Proxmox VE Configuration Guide
             
           </span>
         </div>
@@ -155,7 +171,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/blog/" class="md-tabs__link">
+        <a href="../../../blog/" class="md-tabs__link">
           
   
   Blog
@@ -179,7 +195,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/homelab/reference/ubuntu-server-homelab-configuration-guide/" class="md-tabs__link">
+        <a href="../ubuntu-server-homelab-configuration-guide/" class="md-tabs__link">
           
   
   Homelab
@@ -200,7 +216,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/guides/gitops-with-istio-and-argocd/" class="md-tabs__link">
+        <a href="../../../guides/gitops-with-istio-and-argocd/" class="md-tabs__link">
           
   
   Guides
@@ -235,7 +251,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Magic City DevOps" class="md-nav__button md-logo" aria-label="Magic City DevOps" data-md-component="logo">
+    <a href="../../.." title="Magic City DevOps" class="md-nav__button md-logo" aria-label="Magic City DevOps" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -296,7 +312,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/blog/" class="md-nav__link">
+      <a href="../../../blog/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -419,7 +435,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/homelab/reference/ubuntu-server-homelab-configuration-guide/" class="md-nav__link">
+      <a href="../ubuntu-server-homelab-configuration-guide/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -445,7 +461,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/homelab/reference/openstack-configuration-guide/" class="md-nav__link">
+      <a href="../openstack-configuration-guide/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -530,7 +546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/guides/gitops-with-istio-and-argocd/" class="md-nav__link">
+      <a href="../../../guides/gitops-with-istio-and-argocd/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -556,7 +572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/guides/k8s-gateway-api-with-istio/" class="md-nav__link">
+      <a href="../../../guides/k8s-gateway-api-with-istio/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -596,8 +612,47 @@
               
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+<h1 id="proxmox-ve-configuration-guide">Proxmox VE Configuration Guide</h1>
+<h2 id="install">Install</h2>
+<h2 id="resize-disk">Resize Disk</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>lvremove<span class="w"> </span>/dev/pve/data
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>lvresize<span class="w"> </span>-l<span class="w"> </span>+100%FREE<span class="w"> </span>/dev/pve/root
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>resize2fs<span class="w"> </span>/dev/mapper/pve-root
+</code></pre></div>
+<p>Then update the disk to support all disk objects (vmdisk, snippets, etc)</p>
+<h2 id="create-cloud-init-template">Create Cloud-init Template</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>wget<span class="w"> </span>https://cloud-images.ubuntu.com/releases/releases/jammy/release/ubuntu-22.04-server-cloudimg-amd64-disk-kvm.img
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>qm<span class="w"> </span>create<span class="w"> </span><span class="m">9000</span><span class="w"> </span>--memory<span class="w"> </span><span class="m">2048</span><span class="w"> </span>--net0<span class="w"> </span>virtio,bridge<span class="o">=</span>vmbr0<span class="w"> </span>--scsihw<span class="w"> </span>virtio-scsi-pci
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>qm<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">9000</span><span class="w"> </span>--scsi0<span class="w"> </span>local:0,import-from<span class="o">=</span>/root/ubuntu-22.04-server-cloudimg-amd64-disk-kvm.img
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>qm<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">9000</span><span class="w"> </span>--ide2<span class="w"> </span>local:cloudinit
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>qm<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">9000</span><span class="w"> </span>--boot<span class="w"> </span><span class="nv">order</span><span class="o">=</span>scsi0
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>qm<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">9000</span><span class="w"> </span>--serial0<span class="w"> </span>socket<span class="w"> </span>--vga<span class="w"> </span>serial0
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>qm<span class="w"> </span>template<span class="w"> </span><span class="m">9000</span>
+</code></pre></div>
+<p>Also update the following:</p>
+<ol>
+<li>Memory: 8GB</li>
+<li>CPU: 4 cores</li>
+<li>User Name: magicadmin</li>
+<li>Set password</li>
+<li>Add ssh key</li>
+<li>Set network to DHCP</li>
+</ol>
+<h2 id="to-clone-a-vm">To Clone a VM</h2>
+<ol>
+<li>Resize disk</li>
+<li>then start VM</li>
+</ol>
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -667,11 +722,11 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "/", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "content.code.annotate"], "search": "/assets/javascripts/workers/search.6c7302c4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.6c7302c4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.7001d404.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.7001d404.min.js"></script>
       
     
-  </body>
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
 </html>
