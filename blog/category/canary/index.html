@@ -345,32 +345,6 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../posts/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    
-  
-    None
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
     
     
     
@@ -382,9 +356,9 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" >
         
-          <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -401,8 +375,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_1_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -464,9 +438,9 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_3" checked>
         
-          <label class="md-nav__link" for="__nav_1_4" id="__nav_1_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -483,8 +457,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_1_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -561,6 +535,23 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    Canary
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -576,6 +567,36 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exploring-canary-upgrades-with-istio-ambient-mesh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exploring Canary Upgrades with Istio Ambient Mesh
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1074,411 +1095,6 @@
 <li>Which components are scoped to the Kubernetes network layer?</li>
 <li>How does a canary upgrade of the Istio control plane work with Ambient Mesh?</li>
 </ol>
-<h3 id="deploy-dependencies"><a class="toclink" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#deploy-dependencies">Deploy Dependencies</a></h3>
-<ol>
-<li>Install docker and kubectl
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-0-1"></a>sudo<span class="w"> </span>snap<span class="w"> </span>install<span class="w"> </span>docker
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-0-2"></a>sudo<span class="w"> </span>snap<span class="w"> </span>install<span class="w"> </span>kubectl<span class="w"> </span>--classic
-</code></pre></div></li>
-<li>Install kind:
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-1-1"></a><span class="o">[</span><span class="w"> </span><span class="k">$(</span>uname<span class="w"> </span>-m<span class="k">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>x86_64<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>curl<span class="w"> </span>-Lo<span class="w"> </span>./kind<span class="w"> </span>https://kind.sigs.k8s.io/dl/v0.20.0/kind-linux-amd64
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-1-2"></a>chmod<span class="w"> </span>+x<span class="w"> </span>./kind
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-1-3"></a>sudo<span class="w"> </span>mv<span class="w"> </span>./kind<span class="w"> </span>/usr/local/bin/kind
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-1-4"></a>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-1-5"></a>sudo<span class="w"> </span>kind<span class="w"> </span>create<span class="w"> </span>cluster<span class="w"> </span>--config<span class="o">=</span>-<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-1-6"></a><span class="s">kind: Cluster</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-1-7"></a><span class="s">apiVersion: kind.x-k8s.io/v1alpha4</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-1-8"></a><span class="s">name: ambient</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-1-9"></a><span class="s">networking:</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-1-10"></a><span class="s">  apiServerAddress: &quot;10.0.0.152&quot;</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-1-11"></a><span class="s">  apiServerPort: 6443</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-1-12"></a><span class="s">nodes:</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-1-13"></a><span class="s">- role: control-plane</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-1-14"></a><span class="s">- role: worker</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-1-15"></a><span class="s">- role: worker</span>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-1-16"></a><span class="s">EOF</span>
-</code></pre></div></li>
-<li>Generate kubeconfig:
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-2-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.kube
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-2-2"></a>sudo<span class="w"> </span>kind<span class="w"> </span>get<span class="w"> </span>kubeconfig<span class="w"> </span>--name<span class="w"> </span>ambient<span class="w"> </span>&gt;<span class="w"> </span>~/.kube/config
-</code></pre></div></li>
-<li>Install MetalLB:
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-3-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/metallb/metallb/v0.13.7/config/manifests/metallb-native.yaml
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-3-2"></a>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-3-3"></a><span class="c1"># Determine Docker pod IPAM CIDR</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-3-4"></a>sudo<span class="w"> </span>docker<span class="w"> </span>network<span class="w"> </span>inspect<span class="w"> </span>-f<span class="w"> </span><span class="s1">&#39;{{.IPAM.Config}}&#39;</span><span class="w"> </span>kind
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-3-5"></a>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-3-6"></a><span class="c1"># Add IP Address Pool</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-3-7"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-3-8"></a><span class="s">apiVersion: metallb.io/v1beta1</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-3-9"></a><span class="s">kind: IPAddressPool</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-3-10"></a><span class="s">metadata:</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-3-11"></a><span class="s">  name: example</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-3-12"></a><span class="s">  namespace: metallb-system</span>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-3-13"></a><span class="s">spec:</span>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-3-14"></a><span class="s">  addresses:</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-3-15"></a><span class="s">  - 172.18.255.200-172.18.255.250</span>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-3-16"></a><span class="s">---</span>
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-3-17"></a><span class="s">apiVersion: metallb.io/v1beta1</span>
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-3-18"></a><span class="s">kind: L2Advertisement</span>
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-3-19"></a><span class="s">metadata:</span>
-<a id="__codelineno-3-20" name="__codelineno-3-20" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-3-20"></a><span class="s">  name: empty</span>
-<a id="__codelineno-3-21" name="__codelineno-3-21" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-3-21"></a><span class="s">  namespace: metallb-system</span>
-<a id="__codelineno-3-22" name="__codelineno-3-22" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-3-22"></a><span class="s">EOF</span>
-</code></pre></div></li>
-<li>Add Kubernetes Gateway API CRDs
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-4-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>crd<span class="w"> </span>gateways.gateway.networking.k8s.io<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-4-2"></a><span class="w">  </span><span class="o">||</span><span class="w">   </span><span class="o">{</span><span class="w"> </span>kubectl<span class="w"> </span>kustomize<span class="w"> </span><span class="s2">&quot;github.com/kubernetes-sigs/gateway-api/config/crd/experimental?ref=v0.6.1&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-4-3"></a><span class="w">  </span><span class="p">|</span><span class="w"> </span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>-<span class="p">;</span><span class="w"> </span><span class="o">}</span>
-</code></pre></div></li>
-</ol>
-<div class="admonition note">
-<p class="admonition-title">OPTIONAL: Test MetalLB Functionality Before beginning</p>
-<p>Before you run into issues with communicating with bookinfo through its gateway, make sure that metallb is accessible and working before you begin.  Kind provides <a href="https://kind.sigs.k8s.io/docs/user/loadbalancer/">easy documentation</a> to do so.</p>
-</div>
-<h3 id="understanding-ambient-meshs-core-components"><a class="toclink" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#understanding-ambient-meshs-core-components">Understanding Ambient Mesh's Core Components</a></h3>
-<p>Deploy Ambient Mesh following the <a href="https://istio.io/latest/docs/ops/ambient/getting-started/">Istio Ambient Mesh Getting Started Guide</a>:</p>
-<h4 id="identify-ambient-meshs-core-components"><a class="toclink" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#identify-ambient-meshs-core-components">Identify Ambient Mesh's Core Components</a></h4>
-<p>Deploy Istio using <code>istioctl</code> and we should see exactly what components are being deployed:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-5-1"></a><span class="c1">## Install istioctl</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-5-2"></a>wget<span class="w"> </span>https://github.com/istio/istio/releases/download/1.18.0-alpha.0/istio-1.18.0-alpha.0-linux-amd64.tar.gz
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-5-3"></a>tar<span class="w"> </span>xzf<span class="w"> </span>istio-1.18.0-alpha.0-linux-amd64.tar.gz
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-5-4"></a>sudo<span class="w"> </span>cp<span class="w"> </span>istio-1.18.0-alpha.0/bin/istioctl<span class="w"> </span>/usr/local/bin/istioctl
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-5-5"></a><span class="nb">pushd</span><span class="w"> </span>istio-1.18.0-alpha.0
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-5-6"></a>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-5-7"></a><span class="c1">## Install Istio</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-5-8"></a>istioctl<span class="w"> </span>install<span class="w"> </span>--set<span class="w"> </span><span class="nv">profile</span><span class="o">=</span>ambient<span class="w"> </span>--skip-confirmation
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-6-1"></a>✔ Istio core installed
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-6-2"></a>✔ Istiod installed
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-6-3"></a>✔ CNI installed
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-6-4"></a>✔ Ingress gateways installed
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-6-5"></a>✔ Ztunnel installed
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-6-6"></a>✔ Installation complete
-</code></pre></div></p>
-<p>The <code>ambient</code> profile's <code>IstioOperator</code> configuration can be found in <code>manifests/profiles/ambient.yaml</code> within the Istio release archive.  This deploys <code>istio-cni</code>, <code>istio-core</code> (Base CRDs), <code>istiod</code> (control plane), and <code>ztunnel</code> (data plane) by default.  These component installations must be managed separately for a production-like release process.</p>
-<p>We can see the following is installed:</p>
-<ol>
-<li>Istio-CNI - <code>DaemonSet</code> chained CNI</li>
-<li>Istio Core - CRDs</li>
-<li>Istiod - <code>Deployment</code> control plane</li>
-<li>Ztunnel - <code>DaemonSet</code> node-level mesh</li>
-</ol>
-<p>According to the <a href="https://istio.io/latest/docs/setup/additional-setup/cni/#upgrade">Istio-CNI documentation regarding Canary Upgrades</a>, Istio-CNI's <code>DaemonSet</code> is scoped to the Kubernetes cluster level, and should not deploy as a canary release.</p>
-<p>Ztunnel acts as a node-level mesh manager for Istio.  Since there is not much in the way of documentation for Ztunnel at the time of this writing, we must rely on Ztunnel's logs and the source code to understand its network scope.  Looking at Ztunnel's logs reveals its live configuration:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-1"> 1</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-2"> 2</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-3"> 3</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-4"> 4</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-5"> 5</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-6"> 6</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-7"> 7</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-8"> 8</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-9"> 9</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-10">10</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-11">11</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-12">12</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-13">13</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-14">14</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-15">15</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-16">16</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-17">17</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-18">18</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-19">19</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-20">20</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-21">21</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-22">22</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-23">23</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-24">24</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-7-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="nt">connection_window_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4194304</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="nt">frame_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1048576</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="nt">socks5_addr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">127.0.0.1:15080</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="nt">admin_addr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">127.0.0.1:15000</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="nt">stats_addr</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;[::]:15020&#39;</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="nt">readiness_addr</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;[::]:15021&#39;</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="nt">inbound_addr</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;[::]:15008&#39;</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="nt">inbound_plaintext_addr</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;[::]:15006&#39;</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="nt">outbound_addr</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;[::]:15001&#39;</span>
-<a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="nt">local_node</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ambient-worker2</span>
-<a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="nt">local_ip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.244.1.40</span>
-<a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="hll"><span class="nt">ca_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://istiod.istio-system.svc:15012</span>
-</span><a id="__codelineno-7-13" name="__codelineno-7-13"></a><span class="nt">ca_root_cert</span><span class="p">:</span><span class="w"> </span><span class="kt">!File</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./var/run/secrets/istio/root-cert.pem</span>
-<a id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="hll"><span class="nt">xds_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://istiod.istio-system.svc:15012</span>
-</span><a id="__codelineno-7-15" name="__codelineno-7-15"></a><span class="nt">xds_root_cert</span><span class="p">:</span><span class="w"> </span><span class="kt">!File</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./var/run/secrets/istio/root-cert.pem</span>
-<a id="__codelineno-7-16" name="__codelineno-7-16"></a><span class="nt">xds_on_demand</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<a id="__codelineno-7-17" name="__codelineno-7-17"></a><span class="nt">fake_ca</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<a id="__codelineno-7-18" name="__codelineno-7-18"></a><span class="nt">termination_grace_period</span><span class="p">:</span>
-<a id="__codelineno-7-19" name="__codelineno-7-19"></a><span class="nt">secs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
-<a id="__codelineno-7-20" name="__codelineno-7-20"></a><span class="nt">nanos</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<a id="__codelineno-7-21" name="__codelineno-7-21"></a><span class="nt">proxy_metadata</span><span class="p">:</span>
-<a id="__codelineno-7-22" name="__codelineno-7-22"></a><span class="nt">ISTIO_VERSION</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.18.0-alpha.0</span>
-<a id="__codelineno-7-23" name="__codelineno-7-23"></a><span class="nt">num_worker_threads</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
-<a id="__codelineno-7-24" name="__codelineno-7-24"></a><span class="nt">enable_original_source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
-<a id="__codelineno-7-25" name="__codelineno-7-25"></a><span class="nt">proxy_args</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">proxy ztunnel</span>
-</code></pre></div></td></tr></table></div>
-<p>We can see that Ztunnel expects to get CA and XDS information from <code>https://istiod.istio-system.svc/15012</code>.  From this, we can update our prior assumptions:</p>
-<ol>
-<li>Ztunnel is designed to receive network information from a single <code>istiod</code> service address</li>
-<li>Revisioned Istio releases suffix the <code>istiod</code> control plane with the values of the <code>revision</code> attribute provided</li>
-<li>Therefore, Ztunnel expects to connect to a single revision of the control plane, and should be revisioned as well</li>
-</ol>
-<h3 id="understanding-component-scope"><a class="toclink" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#understanding-component-scope">Understanding Component Scope</a></h3>
-<p>We can draw the following conclusions:</p>
-<ol>
-<li>Istio-CNI is designed as a cluster singleton that can manage network information for multiple revisioned control planes:
-   <img alt="" src="../../../images/ambient-mesh-cni.png" /></li>
-<li>Istiod is scoped to the Kubernetes layer and manages the configuration of a single mesh.  Even though multiple Istiod revisions can be a part of the same control plane, their XDS configurations should be treated as separate; they only share trusted root CA configurations.  Additionally, Ztunnel is scoped to the node network layer but relies on a single revisioned control plane, so it must also be revisioned.  This means that it should not deploy to all nodes, but select a specific node with a matching revision label.
-    <img alt="" src="../../../images/ambient-mesh-ztunnels.png" /></li>
-<li>Finally, Bookinfo Gateway can split traffic between bookinfo-prod-stable and bookinfo-prod-canary in a canary deployment:
-   <img alt="" src="../../../images/ambient-mesh-canary-routes.png" /></li>
-</ol>
-<h3 id="deploy-stable-ambient-mesh-revision"><a class="toclink" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#deploy-stable-ambient-mesh-revision">Deploy Stable Ambient Mesh Revision</a></h3>
-<ol>
-<li>Label a single node so that it can schedule the current revision of Istio components
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-8-1"></a>kubectl<span class="w"> </span>label<span class="w"> </span>node<span class="w"> </span>ambient-worker<span class="w"> </span>istio.io/rev:<span class="w"> </span><span class="m">1</span>-18-0-alpha-0
-</code></pre></div></li>
-<li>Install <code>istio-cni</code>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-9-1"></a>istioctl<span class="w"> </span>install<span class="w"> </span>-f<span class="w"> </span>istio-cni.yaml
-</code></pre></div></li>
-<li>Install <code>istiod</code> and <code>ztunnel</code>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-10-1"></a>istioctl<span class="w"> </span>install<span class="w"> </span>-f<span class="w"> </span><span class="m">1</span>-18-0-alpha-0/control-plane.yaml
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-10-2"></a>istioctl<span class="w"> </span>install<span class="w"> </span>-f<span class="w"> </span><span class="m">1</span>-18-0-alpha-0/data-plane.yaml
-</code></pre></div></li>
-<li>Next, deploy the workloads.  They must live on the <code>ambient-worker</code> node to be a part of the mesh, so each service gets a <code>nodeSelector</code> configuration:
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-11-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span><span class="m">1</span>-18-0-alpha-0/bookinfo.yaml<span class="w"> </span>-n<span class="w"> </span>bookinfo-1-18-0-alpha-0
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-11-2"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span><span class="m">1</span>-18-0-alpha-0/sleep.yaml<span class="w"> </span>-n<span class="w"> </span>bookinfo-1-18-0-alpha-0
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-11-3"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span><span class="m">1</span>-18-0-alpha-0/notsleep.yaml<span class="w"> </span>-n<span class="w"> </span>bookinfo-1-18-0-alpha-0
-</code></pre></div></li>
-<li>Deploy the Bookinfo Gateway
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-12-1"></a>sed<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;s/from: Same/from: All/&#39;</span><span class="w">      </span>-e<span class="w"> </span><span class="s1">&#39;/^  name: bookinfo-gateway/a\</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-12-2"></a><span class="s1">  namespace: istio-system\</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-12-3"></a><span class="s1">&#39;</span><span class="w">     </span>-e<span class="w"> </span><span class="s1">&#39;/^  - name: bookinfo-gateway/a\</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-12-4"></a><span class="s1">    namespace: istio-system\</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-12-5"></a><span class="s1">&#39;</span><span class="w"> </span>samples/bookinfo/gateway-api/bookinfo-gateway.yaml<span class="w"> </span><span class="p">|</span><span class="w"> </span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>-
-</code></pre></div></li>
-<li>Send a request to productpage to make sure it works:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-13-1"></a>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;http://172.18.255.202/productpage&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;&lt;title&gt;.*&lt;/title&gt;&quot;</span>
-</code></pre></div></li>
-<li>Label the namespace to add the workloads to Ambient Mesh
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-14-1"></a>kubectl<span class="w"> </span>label<span class="w"> </span>namespace<span class="w"> </span>bookinfo-1-18-0-alpha-0<span class="w"> </span>istio.io/dataplane-mode<span class="o">=</span>ambient
-</code></pre></div></li>
-<li>Send a request to Product Page through Ambient:
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-15-1"></a>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;http://172.18.255.202/productpage&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;&lt;title&gt;.*&lt;/title&gt;&quot;</span>
-</code></pre></div></li>
-</ol>
-<p>Great!  It's all working.  Next, let's configure the next release.</p>
-<h3 id="deploy-canary-ambient-mesh-revision"><a class="toclink" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#deploy-canary-ambient-mesh-revision">Deploy Canary Ambient Mesh Revision</a></h3>
-<ol>
-<li>
-<p>Clone the project <a href="https://github.com/jonathanelbailey/ambient-mesh-canary-demo.git">repository</a>. </p>
-</li>
-<li>
-<p>Label Node with Canary Revision
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-16-1"></a>kubectl<span class="w"> </span>label<span class="w"> </span>node<span class="w"> </span>ambient-worker2<span class="w"> </span>istio.io/rev:<span class="w"> </span><span class="m">1</span>-18-1
-</code></pre></div></p>
-</li>
-<li>Deploy the Istio components:
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-17-1"></a>istioctl<span class="w"> </span>install<span class="w"> </span>-f<span class="w"> </span><span class="m">1</span>-18-1/control-plane.yaml
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-17-2"></a>istioctl<span class="w"> </span>install<span class="w"> </span>-f<span class="w"> </span><span class="m">1</span>-18-1/data-plane.yaml
-</code></pre></div></li>
-<li>Deploy Canary Workloads
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-18-1"></a><span class="c1"># create new ns for bookinfo</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-18-2"></a>kubectl<span class="w"> </span>create<span class="w"> </span>ns<span class="w"> </span>bookinfo-1-18-1
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-18-3"></a>
-<a id="__codelineno-18-4" name="__codelineno-18-4" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-18-4"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span><span class="m">1</span>-18-1/bookinfo.yaml<span class="w"> </span>-n<span class="w"> </span>bookinfo-1-18-1
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-18-5"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span><span class="m">1</span>-18-1/sleep.yaml<span class="w"> </span>-n<span class="w"> </span>bookinfo-1-18-1
-<a id="__codelineno-18-6" name="__codelineno-18-6" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-18-6"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span><span class="m">1</span>-18-1/notsleep.yaml<span class="w"> </span>-n<span class="w"> </span>bookinfo-1-18-1
-<a id="__codelineno-18-7" name="__codelineno-18-7" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-18-7"></a>
-<a id="__codelineno-18-8" name="__codelineno-18-8" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-18-8"></a><span class="c1"># label namespace</span>
-<a id="__codelineno-18-9" name="__codelineno-18-9" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-18-9"></a>kubectl<span class="w"> </span>label<span class="w"> </span>namespace<span class="w"> </span>bookinfo-1-18-1<span class="w"> </span>istio.io/dataplane-mode<span class="o">=</span>ambient
-</code></pre></div></li>
-</ol>
-<h3 id="prepare-bookinfo-gateway-for-canary"><a class="toclink" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#prepare-bookinfo-gateway-for-canary">Prepare Bookinfo Gateway for Canary</a></h3>
-<p>Configure the <code>HTTPRoute</code> to match the <code>traffic=test</code> header, and route it to the canary workloads:</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">bookinfo-httproute.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-1"> 1</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-2"> 2</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-3"> 3</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-4"> 4</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-5"> 5</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-6"> 6</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-7"> 7</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-8"> 8</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-9"> 9</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-10">10</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-11">11</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-12">12</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-13">13</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-14">14</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-15">15</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-16">16</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-17">17</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-18">18</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-19">19</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-20">20</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-21">21</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-22">22</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-23">23</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-24">24</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-25">25</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-26">26</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-27">27</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-28">28</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-29">29</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-30">30</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-31">31</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-32">32</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-33">33</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-34">34</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-35">35</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-36">36</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-19-37">37</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io/v1beta1</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPRoute</span>
-<a id="__codelineno-19-3" name="__codelineno-19-3"></a><span class="nt">metadata</span><span class="p">:</span>
-<a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bookinfo</span>
-<a id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="nt">spec</span><span class="p">:</span>
-<a id="__codelineno-19-6" name="__codelineno-19-6"></a><span class="w">  </span><span class="nt">parentRefs</span><span class="p">:</span>
-<a id="__codelineno-19-7" name="__codelineno-19-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bookinfo-gateway</span>
-<a id="__codelineno-19-8" name="__codelineno-19-8"></a><span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">istio-system</span>
-<a id="__codelineno-19-9" name="__codelineno-19-9"></a><span class="w">  </span><span class="nt">rules</span><span class="p">:</span>
-<a id="__codelineno-19-10" name="__codelineno-19-10"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matches</span><span class="p">:</span>
-<a id="__codelineno-19-11" name="__codelineno-19-11"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span>
-<a id="__codelineno-19-12" name="__codelineno-19-12"></a><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Exact</span>
-<a id="__codelineno-19-13" name="__codelineno-19-13"></a><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/productpage</span>
-<a id="__codelineno-19-14" name="__codelineno-19-14"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span>
-<a id="__codelineno-19-15" name="__codelineno-19-15"></a><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PathPrefix</span>
-<a id="__codelineno-19-16" name="__codelineno-19-16"></a><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/static</span>
-<a id="__codelineno-19-17" name="__codelineno-19-17"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span>
-<a id="__codelineno-19-18" name="__codelineno-19-18"></a><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Exact</span>
-<a id="__codelineno-19-19" name="__codelineno-19-19"></a><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/login</span>
-<a id="__codelineno-19-20" name="__codelineno-19-20"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span>
-<a id="__codelineno-19-21" name="__codelineno-19-21"></a><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Exact</span>
-<a id="__codelineno-19-22" name="__codelineno-19-22"></a><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/logout</span>
-<a id="__codelineno-19-23" name="__codelineno-19-23"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span>
-<a id="__codelineno-19-24" name="__codelineno-19-24"></a><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PathPrefix</span>
-<a id="__codelineno-19-25" name="__codelineno-19-25"></a><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/api/v1/products</span>
-<a id="__codelineno-19-26" name="__codelineno-19-26"></a><span class="w">    </span><span class="nt">backendRefs</span><span class="p">:</span>
-<a id="__codelineno-19-27" name="__codelineno-19-27"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">productpage</span>
-<a id="__codelineno-19-28" name="__codelineno-19-28"></a><span class="w">      </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bookinfo-1-18-0-alpha-0</span>
-<a id="__codelineno-19-29" name="__codelineno-19-29"></a><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9080</span>
-<a id="__codelineno-19-30" name="__codelineno-19-30"></a><span class="hll"><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matches</span><span class="p">:</span><span class="w">                                </span><span class="c1"># Add route for canary traffic (1)</span>
-</span><a id="__codelineno-19-31" name="__codelineno-19-31"></a><span class="hll"><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">headers</span><span class="p">:</span>
-</span><a id="__codelineno-19-32" name="__codelineno-19-32"></a><span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traffic</span>
-</span><a id="__codelineno-19-33" name="__codelineno-19-33"></a><span class="hll"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
-</span><a id="__codelineno-19-34" name="__codelineno-19-34"></a><span class="hll"><span class="w">    </span><span class="nt">backendRefs</span><span class="p">:</span>
-</span><a id="__codelineno-19-35" name="__codelineno-19-35"></a><span class="hll"><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">productpage</span>
-</span><a id="__codelineno-19-36" name="__codelineno-19-36"></a><span class="hll"><span class="w">      </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bookinfo-1-18-1</span>
-</span><a id="__codelineno-19-37" name="__codelineno-19-37"></a><span class="hll"><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9080</span>
-</span></code></pre></div></td></tr></table></div>
-<ol>
-<li>To canary the release, add a route that matches on the header <code>traffic: test</code>, which will be used when cURLing the canary workloads later on.  Be sure to include the namespaces of each release.</li>
-</ol>
-<h3 id="canary-deployment"><a class="toclink" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#canary-deployment">Canary Deployment</a></h3>
-<ol>
-<li>Update Routes
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-20-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>bookinfo-httproute.yaml
-</code></pre></div>
-    Now Bookinfo is ready to take canary traffic.</li>
-<li>Test canary traffic
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-21-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;traffic: test&quot;</span><span class="w"> </span><span class="s2">&quot;http://172.18.255.202/productpage&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;&lt;title&gt;.*&lt;/title&gt;&quot;</span>
-</code></pre></div>
-    You should see the traffic come back as expected.  Now it's time to shift traffic over to the new release.</li>
-</ol>
-<h3 id="blue-green-deployment"><a class="toclink" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#blue-green-deployment">Blue-Green Deployment</a></h3>
-<p>Update the <code>HttpRoute</code> with the following:</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">bookinfo-httproute.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-1"> 1</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-2"> 2</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-3"> 3</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-4"> 4</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-5"> 5</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-6"> 6</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-7"> 7</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-8"> 8</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-9"> 9</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-10">10</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-11">11</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-12">12</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-13">13</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-14">14</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-15">15</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-16">16</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-17">17</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-18">18</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-19">19</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-20">20</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-21">21</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-22">22</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-23">23</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-24">24</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-25">25</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-26">26</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-27">27</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-28">28</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-29">29</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-30">30</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-31">31</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-32">32</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-33">33</a></span>
-<span class="normal"><a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-22-34">34</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io/v1beta1</span>
-<a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPRoute</span>
-<a id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="nt">metadata</span><span class="p">:</span>
-<a id="__codelineno-22-4" name="__codelineno-22-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bookinfo</span>
-<a id="__codelineno-22-5" name="__codelineno-22-5"></a><span class="nt">spec</span><span class="p">:</span>
-<a id="__codelineno-22-6" name="__codelineno-22-6"></a><span class="w">  </span><span class="nt">parentRefs</span><span class="p">:</span>
-<a id="__codelineno-22-7" name="__codelineno-22-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bookinfo-gateway</span>
-<a id="__codelineno-22-8" name="__codelineno-22-8"></a><span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">istio-system</span>
-<a id="__codelineno-22-9" name="__codelineno-22-9"></a><span class="w">  </span><span class="nt">rules</span><span class="p">:</span>
-<a id="__codelineno-22-10" name="__codelineno-22-10"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matches</span><span class="p">:</span>
-<a id="__codelineno-22-11" name="__codelineno-22-11"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span>
-<a id="__codelineno-22-12" name="__codelineno-22-12"></a><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Exact</span>
-<a id="__codelineno-22-13" name="__codelineno-22-13"></a><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/productpage</span>
-<a id="__codelineno-22-14" name="__codelineno-22-14"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span>
-<a id="__codelineno-22-15" name="__codelineno-22-15"></a><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PathPrefix</span>
-<a id="__codelineno-22-16" name="__codelineno-22-16"></a><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/static</span>
-<a id="__codelineno-22-17" name="__codelineno-22-17"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span>
-<a id="__codelineno-22-18" name="__codelineno-22-18"></a><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Exact</span>
-<a id="__codelineno-22-19" name="__codelineno-22-19"></a><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/login</span>
-<a id="__codelineno-22-20" name="__codelineno-22-20"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span>
-<a id="__codelineno-22-21" name="__codelineno-22-21"></a><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Exact</span>
-<a id="__codelineno-22-22" name="__codelineno-22-22"></a><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/logout</span>
-<a id="__codelineno-22-23" name="__codelineno-22-23"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span>
-<a id="__codelineno-22-24" name="__codelineno-22-24"></a><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PathPrefix</span>
-<a id="__codelineno-22-25" name="__codelineno-22-25"></a><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/api/v1/products</span>
-<a id="__codelineno-22-26" name="__codelineno-22-26"></a><span class="w">    </span><span class="nt">backendRefs</span><span class="p">:</span>
-<a id="__codelineno-22-27" name="__codelineno-22-27"></a><span class="hll"><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">productpage</span>
-</span><a id="__codelineno-22-28" name="__codelineno-22-28"></a><span class="hll"><span class="w">      </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
-</span><a id="__codelineno-22-29" name="__codelineno-22-29"></a><span class="hll"><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9080</span>
-</span><a id="__codelineno-22-30" name="__codelineno-22-30"></a><span class="hll"><span class="w">      </span><span class="nt">weight</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90</span>
-</span><a id="__codelineno-22-31" name="__codelineno-22-31"></a><span class="hll"><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">productpage</span>
-</span><a id="__codelineno-22-32" name="__codelineno-22-32"></a><span class="hll"><span class="w">      </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bookinfo-1-18-1</span>
-</span><a id="__codelineno-22-33" name="__codelineno-22-33"></a><span class="hll"><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9080</span>
-</span><a id="__codelineno-22-34" name="__codelineno-22-34"></a><span class="hll"><span class="w">      </span><span class="nt">weight</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w">                  </span><span class="c1"># Set canary weight to 10% of traffic (1)</span>
-</span></code></pre></div></td></tr></table></div>
-<ol>
-<li>This should be done multiple times while running load.  An arbitrary example would be 10%, 50%, then 100% of traffic to the canary release.</li>
-</ol>
-<p>Then begin shifting traffic:</p>
-<ol>
-<li>Shift traffic to the canary:
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-23-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>bookinfo-httproute.yaml
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-23-2"></a>
-<a id="__codelineno-23-3" name="__codelineno-23-3" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-23-3"></a><span class="c1"># test</span>
-<a id="__codelineno-23-4" name="__codelineno-23-4" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-23-4"></a>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;http://172.18.255.202/productpage&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;&lt;title&gt;.*&lt;/title&gt;&quot;</span>
-</code></pre></div></li>
-<li>Once the blue-green deployment is complete, the <code>1-18-0-alpha-0</code> resources should be ready to clean up:
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-24-1"></a><span class="c1"># remove bookinfo</span>
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-24-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span><span class="m">1</span>-18-0-alpha-0/bookinfo.yaml
-<a id="__codelineno-24-3" name="__codelineno-24-3" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-24-3"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span><span class="m">1</span>-18-0-alpha-0/sleep.yaml
-<a id="__codelineno-24-4" name="__codelineno-24-4" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-24-4"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span><span class="m">1</span>-18-0-alpha-0/notsleep.yaml
-<a id="__codelineno-24-5" name="__codelineno-24-5" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-24-5"></a>
-<a id="__codelineno-24-6" name="__codelineno-24-6" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-24-6"></a><span class="c1"># unlabel default ns</span>
-<a id="__codelineno-24-7" name="__codelineno-24-7" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-24-7"></a>kubectl<span class="w"> </span>label<span class="w"> </span>ns<span class="w"> </span>default<span class="w"> </span>istio.io/dataplane-mode-
-<a id="__codelineno-24-8" name="__codelineno-24-8" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-24-8"></a>
-<a id="__codelineno-24-9" name="__codelineno-24-9" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-24-9"></a><span class="c1"># uninstall istio</span>
-<a id="__codelineno-24-10" name="__codelineno-24-10" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#__codelineno-24-10"></a>istioctl<span class="w"> </span>uninstall<span class="w"> </span>--purge
-</code></pre></div></li>
-</ol>
-<h3 id="conclusion"><a class="toclink" href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/#conclusion">Conclusion</a></h3>
-<p>Canary Upgrades for Ambient Mesh differ wildly from vanilla Istio.  Managing canaries at the node level provide some unforseen challenges, but also provides an opportunity to better organize kubernetes workloads along the physical constraints of each node.  This may not provide the flexibility that some are used to with kubernetes, but workloads should take locality into account for optimal performance anyway.</p>
 
     <nav class="md-post__action">
       <a href="../../2023/06/27/exploring-canary-upgrades-with-istio-ambient-mesh/">
