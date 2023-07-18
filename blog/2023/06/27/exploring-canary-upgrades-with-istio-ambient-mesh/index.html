@@ -10,6 +10,8 @@
       
       
       
+        <link rel="next" href="../../30/gitops-with-istio-and-argocd/">
+      
       
         
       
@@ -218,7 +220,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../../guides/gitops-with-istio-and-argocd/" class="md-tabs__link">
+        <a href="../../../../../guides/gitops-with-istio-and-argocd.md" class="md-tabs__link">
           
   
   Guides
@@ -498,6 +500,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../category/argocd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    ArgoCD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../category/blue-green/" class="md-nav__link">
         
   
@@ -583,6 +611,58 @@
     
   
     DevOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/gateway-api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Gateway API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/gitops/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    GitOps
   
 
     
@@ -922,7 +1002,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../guides/gitops-with-istio-and-argocd/" class="md-nav__link">
+      <a href="../../../../../guides/gitops-with-istio-and-argocd.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -948,7 +1028,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../guides/k8s-gateway-api-with-istio/" class="md-nav__link">
+      <a href="../../../../../guides/k8s-gateway-api-with-istio.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1377,6 +1457,7 @@
 </ol>
 <h2 id="deploy-stable-ambient-mesh-revision">Deploy Stable Ambient Mesh Revision</h2>
 <ol>
+<li>Clone the project <a href="https://github.com/jonathanelbailey/ambient-mesh-canary-demo.git">repository</a>.</li>
 <li>Label a single node so that it can schedule the current revision of Istio components
     <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kubectl<span class="w"> </span>label<span class="w"> </span>node<span class="w"> </span>ambient-worker<span class="w"> </span>istio.io/rev:<span class="w"> </span><span class="m">1</span>-18-0-alpha-0
 </code></pre></div></li>
@@ -1412,14 +1493,9 @@
 <p>Great!  It's all working.  Next, let's configure the next release.</p>
 <h2 id="deploy-canary-ambient-mesh-revision">Deploy Canary Ambient Mesh Revision</h2>
 <ol>
-<li>
-<p>Clone the project <a href="https://github.com/jonathanelbailey/ambient-mesh-canary-demo.git">repository</a>. </p>
-</li>
-<li>
-<p>Label Node with Canary Revision
+<li>Label Node with Canary Revision
     <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>kubectl<span class="w"> </span>label<span class="w"> </span>node<span class="w"> </span>ambient-worker2<span class="w"> </span>istio.io/rev:<span class="w"> </span><span class="m">1</span>-18-1
-</code></pre></div></p>
-</li>
+</code></pre></div></li>
 <li>Deploy the Istio components:
     <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>istioctl<span class="w"> </span>install<span class="w"> </span>-f<span class="w"> </span><span class="m">1</span>-18-1/control-plane.yaml
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>istioctl<span class="w"> </span>install<span class="w"> </span>-f<span class="w"> </span><span class="m">1</span>-18-1/data-plane.yaml
